@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
+{% endblock %}
+
+
+{% block title %}New Challenge{% endblock %}
+{% block content %}
+    {% include 'base/navbar.html' %}
+
+    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+        <h1 class="display-4">Create a new challenge.</h1>
+        <p class="lead">Some text here talking about things to think about when creating a new challenge</p>
+        <hr class="my-4">
+        <form method="post" action="{% url 'home:new' %}">
+            {% csrf_token %}
+            <div class="form-row required">
+                <div class="col-md-9 mb-3">
+                    <label for="title" class="control-label"><strong>Challenge title: </strong></label>
+                    <input id="title" name="title" type="text" class="form-control" placeholder="Example: Year to century converter challenge" maxlength="25" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="type" class="control-label"><strong>Challenge type: </strong></label>
+                    <select class="form-control" id="type" name="type" required>
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="short_desc"><strong>Short description: </strong></label>
+                <input id="short_desc" name="short_desc" class="form-control" placeholder="Example: Given a year, return the century it is in." maxlength="100">
+                <small id="short_descHelp" class="form-text text-muted">
+                    If not provided, a truncated version of the description will be displayed.
+                    <br>
+                    This will displayed on the front page.
+                </small>
+            </div>
+            <div class="form-group required">
+                <label for="description" class="control-label"><strong>Description: </strong></label>
+                <textarea id="description" name="description" class="form-control" oninput="autoGrow(this)" required></textarea>
+                <small id="descriptionHelp" class="form-text text-muted">This will be displayed on the individual challenges page.</small>
+            </div>
+            <div class="form-group required">
+                <label for="rules" class="control-label"><strong>Rules: </strong></label>
+                <textarea id="rules" name="rules" class="form-control" oninput="autoGrow(this)" required></textarea>
+                <small id="rulesHelp" class="form-text text-muted">This will be displayed on the individual challenges page.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+            <small class="text-muted"><strong>Please note that this will not be posted to the main page, a Challenge Host / Admin must post it.</strong></small>
+        </form>
+    </div>
+    <script>
+    function autoGrow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    </script>
+
+{% endblock %}

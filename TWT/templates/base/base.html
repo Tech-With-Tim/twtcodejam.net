@@ -1,0 +1,52 @@
+{# The base templates for all pages to inherit from. #}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    <title>TWT Challenges | {% block title %}Home{% endblock %}</title>
+
+    <link rel="icon" href="{% static 'images/cropped-Tech-With-TimXL-192x192.png' %}" sizes="192x192">
+
+</head>
+<body>
+
+<div style="position: absolute; top: 100px; right: 0;">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="position: relative">
+        <div class="toast-header">
+            <strong class="mr-auto">Bootstrap</strong>
+            <small class="text-muted">11 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+
+{% block content %}
+    {{ block.super }}
+{% endblock %}
+
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.toast').toast('show');
+    });
+</script>
+
+</body>
+</html>

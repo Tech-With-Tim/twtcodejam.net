@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/logout.css' %}">
+{% endblock %}
+
+{% block title %}Logout{% endblock %}
+{% block content %}
+
+    <form method="post" action="{% url 'home:logout' %}">
+        {% csrf_token %}
+        <div class="text-center mb-4">
+            <a href="{% url 'home:home' %}">
+                <img class="mb-4" src="{% static 'images/cropped-Tech-With-TimXL-192x192.png' %}" height="256" width="256" alt="">
+            </a>
+            <h1 class="h1 mb-3 font-weight-normal text-white">Signing out</h1>
+            <p class="font-weight-normal text-white">Are you sure you want to sign out?</p>
+            <p class="font-weight-light text-white text-muted">Press the logo above to return.</p>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-light">
+                Sign out
+            </button>
+        </div>
+    </form>
+
+{% endblock %}

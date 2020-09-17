@@ -1,0 +1,51 @@
+{% load socialaccount %}
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #23272a;">
+    <a class="navbar-brand" href="/">
+        <img src="{% static 'images/cropped-Tech-With-TimXL-192x192.png' %}" width="86" height="86" alt="">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% comment %}
+                        <li class="nav-item dropdown">
+                <button class="btn text-white btn-outline-dark nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Challenges
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Weekly</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Monthly</a>
+                </div>
+            </li>
+            {% endcomment %}
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'home:logout' %}">
+                        <button type="button" class="btn btn-dark">
+                            <img class="rounded-circle" src="{{ avatar_url }}" width="32" height="32" alt="">
+                            Log out
+                        </button>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% provider_login_url 'discord' %}">
+                        <button type="button" class="btn btn-dark">
+                            <img src="{% static 'images/discord.png' %}" height="32" width="32" alt="">
+                            Log in
+                        </button>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
