@@ -1,6 +1,4 @@
 from django.db import models
-
-
 from django.contrib.auth.models import User
 
 
@@ -10,7 +8,10 @@ class Challenge(models.Model):
 
     class ChallengeType(models.TextChoices):
         WEEKLY = 'WE', "Weekly"
-        MONTHLY = "MO", "Weekly"
+        MONTHLY = "MO", "Monthly"
+
+    def __str__(self):
+        return f"{self.title} {self.type} Challenge"
 
     type = models.CharField(
         max_length=2,
