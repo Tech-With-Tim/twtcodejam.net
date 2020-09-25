@@ -128,4 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-our_secrets.py # hide secrets ofc
+#ide ignores
+.idea/
+
+
+# hide secrets ofc
+our_secrets.py
