@@ -28,9 +28,7 @@ class NewChallengeView(View):
             return redirect('/')
 
         context = self.get_context(request=request)
-        # if not context["is_staff"]:   #TODO: I am commenting this out for testing as this doesnt seem right
-        #   return redirect('/')        # Silly mistake... context will not contain the user
-        if not request.user.is_staff:
+        if not context["is_staff"]:
             return redirect('/')
         return render(
             request=request,
