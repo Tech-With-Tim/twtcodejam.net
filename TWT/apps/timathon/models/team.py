@@ -13,7 +13,7 @@ class Team(models.Model):
     name = models.TextField(max_length=50, help_text="Name of the team")
 
     created_at = models.DateTimeField(auto_now=True)
-    winner = models.BooleanField()
+    winner = models.BooleanField(default=False)
 
     members = models.ManyToManyField(User)
 
