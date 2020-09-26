@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 
-from ..context import get_discord_context
+from TWT.context import get_discord_context
 
 
 class StartView(View):

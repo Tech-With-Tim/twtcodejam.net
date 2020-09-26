@@ -39,7 +39,8 @@ ALLOWED_HOSTS = our_secrets.ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'TWT.apps.challenges',
-    
+    'TWT.apps.timathon',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

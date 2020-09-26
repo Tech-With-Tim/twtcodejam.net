@@ -23,6 +23,7 @@ from allauth.socialaccount import providers
 urlpatterns = [
     path('', include('TWT.apps.challenges.urls', namespace='home')),
     path('admin/', admin.site.urls),
+    path('timathon/', include('TWT.apps.timathon.urls', namespace="timathon"))
 ]
 
 

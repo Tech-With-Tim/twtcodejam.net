@@ -6,7 +6,7 @@ from django.views import View
 
 from allauth.account.adapter import get_adapter
 
-from ..context import get_discord_context
+from TWT.context import get_discord_context
 
 
 class LogoutView(View):

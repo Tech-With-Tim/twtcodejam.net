@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
 
-from ..context import get_discord_context
+from TWT.context import get_discord_context
 from ..models import Challenge
 
 from django import forms
