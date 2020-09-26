@@ -7,6 +7,7 @@
     {% include 'base/navbar.html' %}
 
     <form method="post">
+        {% csrf_token %}
         <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
             <div class="card">
                 <div class="card-body">

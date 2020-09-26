@@ -1,19 +1,27 @@
 from django.core.handlers.wsgi import WSGIRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
-
+from ..models import Challenge
 from TWT.context import get_discord_context
 
 
 class StartView(View):
-    """The main landing page for the website."""
+    """Starts a challenge"""
 
-    @staticmethod
-    def post(request: WSGIRequest, request_id: int) -> HttpResponse:
-        """View for ADMINS only to """
-        return render(request=request,
-                      template_name="challenges/test.html",
-                      context=get_discord_context(
-                          request=request
-                      ))
+    def get_context(self, request: WSGIRequest) -> dict:
+        return get_discord_context(request=request)
+
+    def post(self, request: WSGIRequest, challenge_id: int):
+        if not request.user.is_authenticated:
+            return redirect('/')
+
+        context = self.get_context(request=request)
+        if not context["is_admin"]:
+            return redirect('/')
+
+        challenge = Challenge.objects.get(id=challenge_id)
+        challenge.posted = True
+        challenge.save()
+        return redirect('/')
+

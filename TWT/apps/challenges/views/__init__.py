@@ -6,7 +6,7 @@ from .test import TestView
 from .end import EndView
 from .start import StartView
 
-start = EndView.as_view()
+start = StartView.as_view()
 end = EndView.as_view()
 test = TestView.as_view()
 logout = LogoutView.as_view()

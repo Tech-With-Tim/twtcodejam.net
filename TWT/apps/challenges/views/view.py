@@ -10,7 +10,7 @@ from TWT import discord
 
 
 class DetailView(View):
-    """The main landing page for the website."""
+    """Detailed view of a challenge."""
 
     @staticmethod
     def get(request: WSGIRequest, challenge_id: int) -> HttpResponse:
