@@ -1,0 +1,34 @@
+{# Main landing page. #}
+{% extends 'base/base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+    {% include "base/navbar.html" %}
+
+    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+        {% if current_challenge is None %}
+            <h1 class="display-4 text-center">There is no active timathon right now</h1>
+        {% else %}
+            <h1 class="display-4">{{ current_challenge.title }}</h1>
+            <div class="row" style="margin-right: 5px; margin-left: 5px; height: fit-content">
+                <p class="lead" style="flex: 1">{{ current_challenge.short_desc }}</p>
+                <div style="text-align: end; flex: 1">
+                    <svg style="margin-right: 2px; margin-bottom: 2px;" height="20" width="20">
+                        <circle cx="10" cy="10" r="8" fill="{% if current_challenge.status == 'NOT POSTED' %}grey{% elif current_challenge.status == 'RUNNING' %}green{% else %}red{% endif %}"></circle>
+                    </svg>
+                    {{ current_challenge.status.capitalize }}
+                </div>
+            </div>
+            <hr class="my-4">
+            <h5>Description</h5>
+            <p class="">{{ current_challenge.description }}</p>
+            <br>
+            <h5>Rules</h5>
+            <p class="">{{ current_challenge.rules }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -10,8 +10,16 @@ class Challenge(models.Model):
         WEEKLY = 'WE', "Weekly"
         MONTHLY = "MO", "Monthly"
 
+    class ChallengeStatus(models.TextChoices):
+        NOT_POSTED = "NOT POSTED"
+        ONGOING = "RUNNING"
+        ENDED = "ENDED"
+
     def __str__(self):
         return f"{self.title} {self.type} Challenge"
+
+    status = models.TextField(max_length=10, choices=ChallengeStatus.choices, default=ChallengeStatus.NOT_POSTED,
+                              help_text="The challenge status")
 
     type = models.CharField(
         max_length=2,
