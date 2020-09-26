@@ -17,9 +17,17 @@ class HomeView(View):
                                          if challenge.type == "MO" and challenge.posted]
         context["weekly_challenges"] = [challenge for challenge in challenges
                                         if challenge.type == "WE" and challenge.posted]
-        context["unreleased_challenges"] = [challenge for challenge in challenges
-                                            if challenge.type == "WE" and not challenge.posted]
-        context["challenges"] = any((context["monthly_challenges"], context["weekly_challenges"], context["unreleased_challenges"]))
+        context["unreleased_challenges"] = {"monthly_challenges": [], "weekly_challenges": []}
+
+        for challenge in challenges:
+            if challenge.type == "WE" and not challenge.posted:
+                context["unreleased_challenges"]["weekly_challenges"].append(challenge)
+            if challenge.type == "MO" and not challenge.posted:
+                context["unreleased_challenges"]["monthly_challenges"].append(challenge)
+
+        context["challenges"] = any((context["monthly_challenges"], context["weekly_challenges"],
+                                     context["unreleased_challenges"]["weekly_challenges"],
+                                     context["unreleased_challenges"]["weekly_challenges"]))
 
         return context
 
