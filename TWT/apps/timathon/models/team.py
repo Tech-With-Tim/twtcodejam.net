@@ -19,5 +19,5 @@ class Team(models.Model):
     members = models.ManyToManyField(User)
 
     def __str__(self):
-        return f"Team {self.id} for challenge {self.challenge.id}"
+        return f"Team {self.id} ({self.name}) for challenge {self.challenge.id}"
 

@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}Code Jam Submission{% endblock %}
+{% block content %}
+    {% include "base/navbar.html" %}
+    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+        <h1 class="display-4">Submit Your Project</h1>
+        <p class="lead">You will be submitting this project for the ongoing code jam on behalf of the team.</p>
+        <hr class="my-4">
+        <form method="post" action="{% url 'timathon:Submission' %}">
+            {% csrf_token %}
+            <div class="form-group required">
+                    <label for="github_link" class="control-label"><strong>Github Link To your repository: </strong></label>
+                    <input id="github_link" name="github_link" type="text" class="form-control" placeholder="Example: https://github.com/Shubhaankar/CodeJamSubmission" maxlength="150" required>
+            </div>
+            <div class="form-group required">
+                <label for="description" class="control-label"><strong>Description: </strong></label>
+                <textarea id="description" name="description" class="form-control" oninput="autoGrow(this)" maxlength="500" required></textarea>
+                <small id="descriptionHelp" class="form-text text-muted">This is your project description</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+            <small class="text-muted"><strong>Please note that this will be your submission on behalf of your team so kindly ensure that everyone is fine with it.</strong></small>
+        </form>
+    </div>
+    <script>
+    function autoGrow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    </script>
+
+{% endblock %}
