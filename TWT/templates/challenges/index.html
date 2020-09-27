@@ -111,8 +111,10 @@
                     {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
                     {% if forloop.last %}</div>{% endif %}
                     {% endfor %}
+                {% if unreleased_challenges.weekly_challenges %}
                 <br>
                 <hr>
+                {% endif %}
                     {% for challenge in unreleased_challenges.monthly_challenges %}
                         <h5 class="challenge-title">Monthly Challenges</h5>
                         {% if forloop.first %}<div class="row">{% endif %}
