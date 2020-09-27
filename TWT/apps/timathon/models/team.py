@@ -14,6 +14,7 @@ class Team(models.Model):
 
     created_at = models.DateTimeField(auto_now=True)
     winner = models.BooleanField(default=False)
+    submitted = models.BooleanField(default=False)
 
     members = models.ManyToManyField(User)
 
