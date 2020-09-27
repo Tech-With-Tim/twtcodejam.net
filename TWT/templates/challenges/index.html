@@ -36,7 +36,7 @@
             <li class="nav-item" role="presentation">
                 <a class="flex-sm-fill text-sm-center nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="profile" aria-selected="false">Monthly</a>
             </li>
-            {% if is_mod %}
+            {% if is_helper %}
                 <li class="nav-item" role="presentation">
                     <a class="flex-sm-fill text-sm-center nav-link" id="unreleased-tab" data-toggle="tab" href="#unreleased" role="tab" aria-controls="settings" aria-selected="false">Unreleased</a>
                 </li>
@@ -88,7 +88,7 @@
                 {% if forloop.last %}</div>{% endif %}
                 {% endfor %}
             </div>
-            {% if is_mod %}
+            {% if is_helper %}
                 <div class="tab-pane fade" id="unreleased" role="tabpanel" aria-labelledby="unreleased-tab">
                     {% for challenge in unreleased_challenges.weekly_challenges %}
                         <h5 class="challenge-title">Weekly Challenges</h5>

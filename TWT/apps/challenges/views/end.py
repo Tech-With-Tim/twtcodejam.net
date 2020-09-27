@@ -21,16 +21,17 @@ class EndView(View):
             return redirect('/')
 
         context = self.get_context(request=request)
-        if not context["is_admin"]:
+        if context["is_admin"] or context["is_challenge_host"]:
+            challenge = Challenge.objects.get(id=challenge_id)
+            challenge.ended = True
+            challenge.save()
             messages.add_message(request,
                                  messages.INFO,
-                                 'You should be an admin to do this!')
+                                 'Challenge has been closed!')
             return redirect('/')
 
-        challenge = Challenge.objects.get(id=challenge_id)
-        challenge.ended = True
-        challenge.save()
-        messages.add_message(request,
-                             messages.INFO,
-                             'Challenge has been closed')
-        return redirect('/')
+        else:
+            messages.add_message(request,
+                                 messages.INFO,
+                                 'You should be an admin or challenge host to do this!')
+            return redirect('/')

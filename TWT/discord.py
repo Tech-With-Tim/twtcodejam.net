@@ -49,13 +49,14 @@ HELPER_ID: int = 541272748161499147
 MOD_ID: int = 511332506780434438
 ADMIN_ID: int = 580911082290282506
 TIM_ID: int = 511334601977888798
+CHALLENGE_HOST: int = 713170076148433017
 ALL_ROLES = {
     "TIM": TIM_ID,
     "ADMIN": ADMIN_ID,
     "MOD": MOD_ID,
-    "HELPER": HELPER_ID
+    "HELPER": HELPER_ID,
+    "CHALLENGE_HOST": CHALLENGE_HOST
 }
-
 
 __cache = TimedCache(seconds=10)
 
@@ -85,6 +86,11 @@ def is_admin(member_id: int) -> bool:
 def is_tim(member_id: int) -> bool:
     member = get_member(member_id=member_id)
     return str(TIM_ID) in member["roles"]
+
+
+def is_challenge_host(member_id: int) -> bool:
+    member = get_member(member_id=member_id)
+    return str(CHALLENGE_HOST) in member["roles"]
 
 
 def is_any(*roles, member_id: int) -> bool:

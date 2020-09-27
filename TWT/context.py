@@ -20,6 +20,7 @@ def get_discord_context(request: WSGIRequest) -> dict:
         context["is_admin"] = is_admin = discord.is_admin(member_id=user.uid)
         if not is_admin:
             context["is_mod"] = is_mod = discord.is_mod(member_id=user.uid)
+            context["is_challenge_host"] = discord.is_challenge_host(member_id=user.uid)
             if not is_mod:
                 context["is_helper"] = discord.is_helper(member_id=user.uid)
             else:
