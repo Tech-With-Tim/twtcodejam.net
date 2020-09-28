@@ -53,6 +53,14 @@ class Create_team(View):
         if not request.user.is_authenticated:
             return redirect('/')
         context = self.get_context(request=request)
+        try:
+            challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
+        except Challenge.DoesNotExist:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 'No ongoing code jam.')
+            return redirect('home:home')
+
         return render(
             request=request,
             template_name="timathon/create_teams.html",
