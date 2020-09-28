@@ -16,7 +16,7 @@ class Team(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     winner = models.BooleanField(default=False)
     submitted = models.BooleanField(default=False)
-
+    votes = models.IntegerField(default=0)
     members = models.ManyToManyField(User)
 
     def __str__(self):
