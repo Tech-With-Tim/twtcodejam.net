@@ -46,6 +46,8 @@ class Challenge(models.Model):
     posted = models.BooleanField(default=False)
     ended = models.BooleanField(default=False)
     posted_at = models.DateTimeField(null=True, blank=True, default=None)
+    submissions_status = models.BooleanField(default=False)
+    team_creation_status = models.BooleanField(default=False)
 
     @property
     def active(self):
