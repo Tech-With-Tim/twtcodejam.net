@@ -3,11 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
+from TWT.context import get_discord_context
+
 
 class Create_team(View):
     def get_context(self, request: WSGIRequest) -> dict:
-        pass
-        #return get_discord_context(request=request)
+        return get_discord_context(request=request)
 
     def post(self, request: WSGIRequest):
         #form = YourForm(request.POST)

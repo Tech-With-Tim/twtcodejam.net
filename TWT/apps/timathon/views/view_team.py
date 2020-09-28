@@ -4,25 +4,23 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
+from TWT.apps.challenges.models import Challenge
 from TWT.apps.timathon.models import Team
 from TWT.context import get_discord_context
-from TWT.apps.challenges.models.challenge import Challenge
 
 
-class HomeView(View):
-    def get_context(self, request: WSGIRequest):
-        context = get_discord_context(request=request)
-        challenges = Challenge.objects.all()
-
-        context['challenges'] = \
-            [challenge for challenge in challenges if challenge.type == Challenge.ChallengeType.MONTHLY]
-
-        context['current_challenge'] = [challenge for challenge in challenges
-                                        if challenge.type == Challenge.ChallengeType.MONTHLY and not challenge.ended]
-
-        context['current_challenge'] = context['current_challenge'][0] or None
-        if context['current_challenge']:
-            old_teams = Team.objects.filter(challenge_id=context['current_challenge'].id)
+class View_teams(View):
+    def get_context(self, request: WSGIRequest) -> dict:
+        context = get_discord_context(request)
+        challenges = list(Challenge.objects.filter(ended=False, type=Challenge.ChallengeType.MONTHLY))
+        if not context['is_staff']:
+            challenges = filter(lambda x: x.posted, challenges)
+        print(challenges)
+        if len(challenges) > 0:
+            print(challenges)
+            current_challenge = challenges[0]
+            context['challenge'] = current_challenge
+            old_teams = Team.objects.filter(challenge_id=current_challenge.id)
             teams = []
             for team in old_teams:
                 members = team.members.all()
@@ -42,15 +40,24 @@ class HomeView(View):
                 team.discord_members = discord_members
                 teams.append(team)
 
+            print(teams)
+
             context['teams'] = teams
 
-        print(context)
         return context
 
+    def post(self, request: WSGIRequest):
+        # form = request(request.POST)
+        # if form.is_valid():
+        #    pass
+        return redirect('/')
+
     def get(self, request: WSGIRequest) -> HttpResponse:
-        context = self.get_context(request)
-
         if not request.user.is_authenticated:
-            return redirect()
-
-        return render(request, template_name='timathon/index.html', context=context)
+            return redirect('/')
+        context = self.get_context(request=request)
+        return render(
+            request=request,
+            template_name="timathon/view_team.html",
+            context=context
+        )
