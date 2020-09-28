@@ -60,7 +60,11 @@ class Create_team(View):
                                  messages.WARNING,
                                  'No ongoing code jam.')
             return redirect('home:home')
-
+        if challenge.team_creation_status == False:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 'Team Submissions are closed Right Now')
+            return redirect('home:home')
         return render(
             request=request,
             template_name="timathon/create_teams.html",

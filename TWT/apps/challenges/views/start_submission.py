@@ -7,13 +7,12 @@ from ..models import Challenge
 from TWT.context import get_discord_context
 
 
-class StartView(View):
-    """Starts a challenge"""
+class StartSubmission(View):
 
     def get_context(self, request: WSGIRequest) -> dict:
         return get_discord_context(request=request)
 
-    def post(self, request: WSGIRequest, challenge_id: int):
+    def get(self, request: WSGIRequest, challenge_id: int):
         if not request.user.is_authenticated:
             messages.add_message(request,
                                  messages.INFO,
@@ -23,17 +22,9 @@ class StartView(View):
         context = self.get_context(request=request)
         if context["is_admin"] or context["is_challenge_host"]:
             challenge = Challenge.objects.get(id=challenge_id)
-            challenge.posted = True
-            challenge.status = "RUNNING"
-            challenge.team_creation_status = True
+            challenge.submissions_status = True
             challenge.save()
             messages.add_message(request,
                                  messages.INFO,
-                                 'Challenge has been posted!')
-            return redirect('/')
-
-        else:
-            messages.add_message(request,
-                                 messages.INFO,
-                                 'You should be an admin or challenge host to do this!')
+                                 'Submissions have been started')
             return redirect('/')

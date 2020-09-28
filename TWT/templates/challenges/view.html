@@ -28,6 +28,14 @@
             {% if is_helper %}
                 {% if challenge.active %}
                     <button class="btn btn-danger btn-lg float-right" formaction="{% url 'home:end' challenge.id %}">End</button>
+                    {% if challenge.team_creation_status %}
+                        <a class="btn btn-danger btn-lg float-left" href="{% url 'home:StopTeams' challenge.id %}">Stop Team Creation</a>
+                    {% endif %}
+                    {% if challenge.submissions_status %}
+                        <a class="btn btn-danger btn-lg" href="{% url 'home:StopSubmissions' challenge.id %}">Stop Submissions</a>
+                    {% else %}
+                        <a class="btn btn-success btn-lg" href="{% url 'home:StartSubmission' challenge.id %}">Start Submissions</a>
+                    {% endif %}
                 {% else %}   {# TODO: These views. Only POST. #}
                     <button class="btn btn-success btn-lg float-right" formaction="{% url 'home:start' challenge.id %}">Start</button>
                 {% endif %}

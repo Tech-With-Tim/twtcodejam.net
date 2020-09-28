@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from TWT.apps.timathon.models import Team
-
+from TWT.apps.challenges.models import Challenge
 
 class Submission(models.Model):
     id = models.AutoField(primary_key=True,
@@ -11,7 +11,7 @@ class Submission(models.Model):
     github_link = models.URLField(max_length=150, help_text="Link to github repo")
 
     description = models.TextField(max_length=500, help_text="Project Description")
-
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
 

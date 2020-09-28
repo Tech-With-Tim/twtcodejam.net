@@ -29,10 +29,16 @@ class Submission_View(View):
             github_link = form.cleaned_data["github_link"]
             challenge = Challenge.objects.get(type='MO', ended=False, posted=True)
             team = Team.objects.get(challenge=challenge, members=request.user)
+            if len(Submission.objects.filter(challenge=challenge, team=team))!=0:
+                messages.add_message(request,
+                                     messages.WARNING,
+                                     'You have already submitted.')
+                return redirect(reverse('home:home'))
             Submission.objects.create(
                 github_link=github_link,
                 description=description,
-                team=team
+                team=team,
+                challenge=challenge
             )
             team.submitted = True
             team.save()
@@ -54,6 +60,18 @@ class Submission_View(View):
                                  messages.INFO,
                                  'Sign In')
             return redirect('/')
+        try:
+            challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
+        except Challenge.DoesNotExist:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 'No ongoing code jam.')
+            return redirect('home:home')
+        if challenge.submissions_status == False:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 'Submissions Closed Right Now')
+            return redirect('home:home')
         context: dict = self.get_context(request=request)
         return render(
             request=request,
