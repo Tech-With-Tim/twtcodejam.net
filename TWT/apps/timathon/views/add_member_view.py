@@ -25,6 +25,11 @@ class AddMember(View):
                                  messages.WARNING,
                                  "You are Already in a Team")
             return redirect('/')
+        if challenge.team_creation_status == False:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 "Team creations have closed.")
+            return redirect('/')
         team = Team.objects.get(invite=invite)
         team.members.add(user)
         team.save()
