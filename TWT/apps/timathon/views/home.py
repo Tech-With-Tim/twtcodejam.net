@@ -12,8 +12,15 @@ from TWT.apps.challenges.models.challenge import Challenge
 class HomeView(View):
     def get_context(self, request: WSGIRequest):
         context = get_discord_context(request=request)
-        challenges = Challenge.objects.all()
-
+        #challenges = Challenge.objects.all()
+        challenges = Challenge.objects.filter(type="MO", posted=True)
+        context["challenges"] = challenges
+        try:
+            current_challenge = Challenge.objects.get(type="MO", posted=True, ended=False)
+        except:
+            current_challenge = None
+        context["current_challenge"] = current_challenge
+        """
         context['challenges'] = \
             [challenge for challenge in challenges if challenge.type == Challenge.ChallengeType.MONTHLY]
 
@@ -21,8 +28,9 @@ class HomeView(View):
                                         if challenge.type == Challenge.ChallengeType.MONTHLY and not challenge.ended]
 
         context['current_challenge'] = context['current_challenge'][0] or None
+        """
         if context['current_challenge']:
-            old_teams = Team.objects.filter(challenge_id=context['current_challenge'].id)
+            old_teams = Team.objects.filter(challenge=context['current_challenge'])
             teams = []
             for team in old_teams:
                 members = team.members.all()

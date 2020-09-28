@@ -4,7 +4,28 @@
 
 {% block stylesheets %}
 {% endblock %}
-
+{% block title %}Create a Code Jam Team{% endblock %}
 {% block content %}
-    <h1>Create Teams</h1>
+    {% include "base/navbar.html" %}
+    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+        <h1 class="display-4">Create a team for the ongoing Code jam</h1>
+        <p class="lead">You will be creating a team for the ongoing code jam in which you can add members with the invitation link.</p>
+        <hr class="my-4">
+        <form method="post" action="{% url 'timathon:Create_Team' %}">
+            {% csrf_token %}
+            <div class="form-group required">
+                    <label for="name" class="control-label"><strong>Name of your team: </strong></label>
+                    <input id="name" name="name" type="text" class="form-control" placeholder="Example: Awesome Team" maxlength="50" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+        </form>
+    </div>
+    <script>
+    function autoGrow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    </script>
+
 {% endblock %}

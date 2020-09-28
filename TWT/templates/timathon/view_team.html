@@ -3,33 +3,16 @@
 {% load static %}
 
 {% block stylesheets %}
-    <style>
-        .team-member{
-            margin: 5px;
-        }
-        .team-member > img{
-            margin-right: 15px;
-        }
-    </style>
 {% endblock %}
 
 {% block content %}
     {% include 'base/navbar.html' %}
     <div class="jumbotron" style="margin: 2% 4% 1%;">
-        {% if team %}
-            <h5>Team {{ forloop.counter }}</h5>
-            <h6>Name</h6><p>{{ team.name }}</p>
-            <h6>Members</h6>
-            <div style="padding: 5px">
-                {% for member in team.discord_members %}
-                    <div class="team-member">
-                        <img style="border-radius: 50%; width: 65px" src="{{ member.avatar_url }}" alt="pfp">
-                        <span>{{ member.username }}#{{ member.discriminator }} ({{ member.user_id }})</span>
-                    </div>
-                {% endfor %}
-            </div>
+        <h1>TEAM NAME: {{ team.name }}</h1>
+        {% if user in team.members.all %}
+            <h1>Invite members in your team: {{invite}}</h1>
         {% else %}
-            <p>No teams registered for the code jam yet</p>
+            <h1>vote for the team</h1>
         {% endif %}
     </div>
 {% endblock %}

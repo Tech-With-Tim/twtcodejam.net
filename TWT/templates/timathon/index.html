@@ -31,21 +31,31 @@
             <p class="">{{ current_challenge.rules }}</p>
             <br>
             <h4>Teams</h4>
+
             {% if teams %}
-                {% for team in teams %}
-                    {% if not forloop.first %}<hr>{% endif %}
-                    <h5>Team {{ forloop.counter }}</h5>
-                    <h6>Name</h6><p>{{ team.name }}</p>
-                    <h6>Members</h6>
-                    <div style="padding: 5px">
-                        {% for member in team.discord_members %}
-                            <div class="team-member">
-                                <img style="border-radius: 50%; width: 65px" src="{{ member.avatar_url }}" alt="pfp">
-                                <span>{{ member.username }}#{{ member.discriminator }} ({{ member.user_id }})</span>
+                <div class="card-group">
+                    {% for team in teams %}
+                        {% if not forloop.first %}<hr>{% endif %}
+                        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Team {{ forloop.counter }}</div>
+                            <div class="card-body text-info">
+                                <h5 class="card-title text-white">Name</h5>
+                                <p class="card-text text-white">{{ team.name }}</p>
+                                <div style="padding-bottom: 10px;">
+                                {% for member in team.discord_members %}
+                                    <div class="team-member text-white">
+                                        <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
+                                        <span>{{ member.username }}</span>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                                <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn btn-light">View Team</a>
+
                             </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
+
+                        </div>
+                    {% endfor %}
+                </div>
             {% else %}
                 <p>No teams registered for the code jam yet</p>
             {% endif %}

@@ -6,8 +6,9 @@ from TWT.apps.challenges.models import Challenge
 
 
 class Team(models.Model):
-    id = models.CharField(max_length=255, primary_key=True, unique=True, editable=False, default=uuid.uuid4,
-                          help_text="Team id")
+    ID = models.AutoField(primary_key=True)
+    invite = models.CharField(max_length=255, unique=True, editable=False, default=uuid.uuid4,
+                          help_text="invite")
 
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, help_text="Code Jam")
     name = models.TextField(max_length=50, help_text="Name of the team")
@@ -19,5 +20,5 @@ class Team(models.Model):
     members = models.ManyToManyField(User)
 
     def __str__(self):
-        return f"Team {self.id} ({self.name}) for challenge {self.challenge.id}"
+        return f"Team {self.ID} ({self.name}) for challenge {self.challenge.id}"
 

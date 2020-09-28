@@ -24,6 +24,7 @@ class StartView(View):
         if context["is_admin"] or context["is_challenge_host"]:
             challenge = Challenge.objects.get(id=challenge_id)
             challenge.posted = True
+            challenge.status = "RUNNING"
             challenge.save()
             messages.add_message(request,
                                  messages.INFO,
