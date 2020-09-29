@@ -8,11 +8,23 @@
 {% block content %}
     {% include 'base/navbar.html' %}
     <div class="jumbotron" style="margin: 2% 4% 1%;">
-        <h1>TEAM NAME: {{ team.name }}</h1>
+        <h1>TEAM</h1>
+        <h5>Name</h5>
+        <p>{{ team.name }}</p>
+        <div style="padding-bottom: 10px;">
+        <h5>Members</h5>
+        {% for member in team.discord_members %}
+            <div class="team-member">
+                <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
+                <span>{{ member.username }}</span>
+            </div>
+        {% endfor %}
+        </div>
+        <br>
         {% if user in team.members.all %}
-            <h1>Invite members in your team: {{invite}}</h1>
+            <h4>Invite members in your team: <a href="{{ invite }}">{{invite}}</a></h4>
         {% else %}
-            <h1>vote for the team</h1>
+{#            <h1>vote for the team</h1> IMPLEMENT THIS WITH THE VOTING SYSTEM#}
         {% endif %}
     </div>
 {% endblock %}
