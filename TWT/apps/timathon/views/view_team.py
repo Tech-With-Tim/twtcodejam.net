@@ -13,7 +13,6 @@ class View_teams(View):
     def get_context(self, request: WSGIRequest, team_ID) -> dict:
         context = get_discord_context(request)
 
-
         team = Team.objects.get(ID=team_ID)
 
         members = team.members.all()
