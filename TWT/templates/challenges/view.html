@@ -20,16 +20,13 @@
                 </div>
             </div>
             <br>
-            {% if challenge.active %}
-                <button class="btn btn-primary btn-lg">Submit</button>
-            {% else %}
-                <button class="btn btn-primary btn-lg" disabled>Submit</button>
-            {% endif %}
             {% if is_helper %}
                 {% if challenge.active %}
                     <button class="btn btn-danger btn-lg float-right" formaction="{% url 'home:end' challenge.id %}">End</button>
                     {% if challenge.team_creation_status %}
                         <a class="btn btn-danger btn-lg float-left" href="{% url 'home:StopTeams' challenge.id %}">Stop Team Creation</a>
+                    {% else %}
+                        <a class="btn btn-success btn-lg float-left" href="{% url 'home:StartTeams' challenge.id %}">Start Team Creation</a>
                     {% endif %}
                     {% if challenge.submissions_status %}
                         <a class="btn btn-danger btn-lg" href="{% url 'home:StopSubmissions' challenge.id %}">Stop Submissions</a>
@@ -41,15 +38,6 @@
                 {% endif %}
             {% endif %}
             <br>
-            {% if challenge.active %}
-                <p class="text-muted">Submit your solution.</p>
-            {% else %}
-                {% if challenge.ended %}
-                    <p class="text-muted">This challenge has ended, you cannot submit any more solutions.</p>
-                {% else %}
-                    <p class="text-muted">This challenge has not started, wait for an admin to start it.</p>
-                {% endif %}
-            {% endif %}
         </div>
     </form>
 

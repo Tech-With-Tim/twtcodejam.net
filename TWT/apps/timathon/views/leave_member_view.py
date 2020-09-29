@@ -9,36 +9,25 @@ from ...challenges.models.challenge import Challenge
 from django.contrib import messages
 
 
-class AddMember(View):
+class LeaveTeam(View):
     def get_context(self, request: WSGIRequest) -> dict:
         return get_discord_context(request=request)
 
-    def get(self, request: WSGIRequest, invite):
+    def get(self, request: WSGIRequest):
         if not request.user.is_authenticated:
             return redirect('/')
         context = self.get_context(request=request)
         user = request.user
         challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
-        user_teams = Team.objects.filter(challenge=challenge, members=user)
-        if len(user_teams) != 0:
+        if len(Team.objects.filter(challenge=challenge, members=user)) <= 0:
             messages.add_message(request,
                                  messages.WARNING,
-                                 "You are Already in a Team")
-            return redirect('/')
-        if challenge.team_creation_status == False:
-            messages.add_message(request,
-                                 messages.WARNING,
-                                 "Team creations and additions have closed.")
-            return redirect('/')
-        team = Team.objects.get(invite=invite)
-        if len(team.members.all()) >= 6:
-            messages.add_message(request,
-                                 messages.WARNING,
-                                 "This team is Full.")
+                                 "You are not in a team !")
             return redirect('timathon:Home')
-        team.members.add(user)
+        team = Team.objects.get(challenge=challenge, members=user)
+        team.members.remove(user)
         team.save()
         messages.add_message(request,
                              messages.INFO,
-                             "Added you in the team!")
+                             "Removed you from the team!")
         return redirect('timathon:Home')
