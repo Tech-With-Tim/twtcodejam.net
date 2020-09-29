@@ -27,6 +27,8 @@ class LeaveTeam(View):
         team = Team.objects.get(challenge=challenge, members=user)
         team.members.remove(user)
         team.save()
+        if len(team.members.all()) == 0:
+            team.delete()
         messages.add_message(request,
                              messages.INFO,
                              "Removed you from the team!")

@@ -22,7 +22,9 @@
         </div>
         <br>
         {% if user in team.members.all %}
-            <h4>Invite members in your team: <a href="{{ invite }}">{{invite}}</a></h4>
+            <h6>Invite members in your team: <a href="{{ invite }}">{{invite}}</a></h6>
+            <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
+            <span>(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
         {% else %}
 {#            <h1>vote for the team</h1> IMPLEMENT THIS WITH THE VOTING SYSTEM#}
         {% endif %}
