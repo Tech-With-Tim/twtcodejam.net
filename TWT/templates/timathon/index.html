@@ -30,13 +30,17 @@
             <h5>Rules</h5>
             <p class="">{{ current_challenge.rules }}</p>
             <br>
-            <h4>Teams</h4>
+            <div class="row" style="margin: 0">
+                <h4 style="flex: 1">Teams</h4>
+            <form action="{% url 'timathon:Create_Team' %}">
+                {% if in_team == False %}<button type="submit" class="btn btn-success" style="color: white">Create a team</button>{% endif %}
+            </form>
+            </div>
 
             {% if teams %}
-                <div class="card-group">
+                <div style="display: flex; flex-direction: row">
                     {% for team in teams %}
-                        {% if not forloop.first %}<hr>{% endif %}
-                        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; margin: 5px">
                             <div class="card-header">Team {{ forloop.counter }}</div>
                             <div class="card-body text-info">
                                 <h5 class="card-title text-white">Name</h5>
@@ -50,9 +54,7 @@
                                 {% endfor %}
                                 </div>
                                 <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn btn-light">View Team</a>
-
                             </div>
-
                         </div>
                     {% endfor %}
                 </div>

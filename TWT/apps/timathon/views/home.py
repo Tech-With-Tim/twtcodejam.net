@@ -32,11 +32,14 @@ class HomeView(View):
         if context['current_challenge']:
             old_teams = Team.objects.filter(challenge=context['current_challenge'])
             teams = []
+            is_in_team = False
             for team in old_teams:
                 members = team.members.all()
                 discord_members = []
                 for member in members:
                     new_member = {}
+                    if member.id == request.user.id:
+                        is_in_team = True
                     try:
                         user = SocialAccount.objects.get(user_id=member.id)
                     except SocialAccount.DoesNotExist:
@@ -50,9 +53,9 @@ class HomeView(View):
                 team.discord_members = discord_members
                 teams.append(team)
 
+            context['in_team'] = is_in_team
             context['teams'] = teams
 
-        print(context)
         return context
 
     def get(self, request: WSGIRequest) -> HttpResponse:
