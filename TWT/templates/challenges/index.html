@@ -9,9 +9,6 @@
 
 {% block content %}
     {% include "base/navbar.html" %}
-    {% if not is_verified %}
-
-    {% endif %}
         {% if is_staff %}
             <p class="text-center text-white" style="margin-top: 25px">Hey {{ username }}, you have permission to create new challenges!
                 <br>
