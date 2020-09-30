@@ -65,7 +65,7 @@ class HomeView(View):
         if not request.user.is_authenticated:
             messages.add_message(request,
                                  messages.WARNING,
-                                 "No logged in.")
+                                 "Not logged in.")
             return redirect('/')
 
 
