@@ -3,6 +3,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
 
 from TWT.apps.timathon.models import Team
 from TWT.context import get_discord_context
@@ -62,6 +63,10 @@ class HomeView(View):
         context = self.get_context(request)
 
         if not request.user.is_authenticated:
-            return redirect()
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 "No logged in.")
+            return redirect('/')
+
 
         return render(request, template_name='timathon/index.html', context=context)
