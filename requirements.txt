@@ -1,3 +1,4 @@
 django-allauth
 psycopg2
 django
+django-markdownify

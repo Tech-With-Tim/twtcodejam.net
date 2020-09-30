@@ -2,8 +2,21 @@
 {% extends 'base/base.html' %}
 {% load socialaccount %}
 {% load static %}
+{% load markdownify %}
 
 {% block stylesheets %}
+    <style>
+    pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        font-family: inherit;
+        font-size: inherit;
+        overflow: hidden;
+    }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -25,10 +38,10 @@
             </div>
             <hr class="my-4">
             <h5>Description</h5>
-            <p class="">{{ current_challenge.description }}</p>
+            <pre>{{ current_challenge.description | markdownify }}</pre>
             <br>
             <h5>Rules</h5>
-            <p class="">{{ current_challenge.rules }}</p>
+            <pre>{{ current_challenge.rules | markdownify }}</pre>
             <br>
             <div class="row" style="margin: 0">
                 <h4 style="flex: 1">Teams</h4>

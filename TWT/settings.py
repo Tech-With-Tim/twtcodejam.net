@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.discord',
 
+    'markdownify',
+
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.sites',
