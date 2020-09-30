@@ -11,10 +11,10 @@
     {% include "base/navbar.html" %}
 
     {% if is_staff %}
-        <p class="text-center text-white" style="margin-top: 10px">Hey {{ username }}, you have permission to create new challenges!
+        <p class="text-center text-white" style="margin-top: 25px">Hey {{ username }}, you have permission to create new challenges!
             <br>
             <a href="{% url 'home:new' %}">
-                <button class="btn btn-success">
+                <button class="btn btn-success" style="margin-top: 10px; margin-bottom: 10px">
                     New
                 </button>
             </a>
@@ -23,123 +23,138 @@
 
     {# Display all challenges. #}
 
-    {% if challenges %}
-        <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
-        <h1 class="display-4">Challenges</h1>
-        <p class="lead">Coming Soon....</p>
-        <hr class="my-4">
-
-        <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="flex-sm-fill text-sm-center nav-link active" id="weekly-tab" data-toggle="tab" href="#weekly" role="tab" aria-controls="home" aria-selected="true">Weekly</a>
-            </li>
-            {% if is_helper %}
-                <li class="nav-item" role="presentation">
-                    <a class="flex-sm-fill text-sm-center nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="profile" aria-selected="false">Monthly</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="flex-sm-fill text-sm-center nav-link" id="unreleased-tab" data-toggle="tab" href="#unreleased" role="tab" aria-controls="settings" aria-selected="false">Unreleased</a>
-                </li>
-            {% endif %}
-        </ul>
+    <div class="container" style="margin-bottom: 5%">
+        <h4 class="text-white">Timathon - Code Jam</h4>
+        <p class="text-white">We will be hosting a code jam every 2 months, each consisting of a different theme and allowing yourself to put your skills to the test. In comparison to other code jams available, you can request for your own teammates and team sizes. Meaning, if you prefer to go solo, you're still welcome to participate.</p>
+        <h5 class="text-white">Prizes:</h5>
+        <p class="text-white">For our code jams, you're in for a chance to win real cash prizes. <br> (CAD) $150, $100 and $50 will be split amongst the winning teams.</p>
+        <h5 class="text-white">Voting:</h5>
+        <h6 class="text-white">The community will have a chance to vote on their favorite submission. The top 10 voted will be reviewed, and the winners will be chosen by Tim.</h6>
+    </div>
+    <div class="container" style="margin-bottom: 5%">
+        <h4 class="text-white">Weekly Challenges</h4>
+        <p class="text-white">To sign up for the our weekly coding challenges, please go to <a style="color: #007bff" href="https://discord.com/channels/501090983539245061/680851838857117770">#challenge</a>. Read up on the challenge and if you would like to participate all you'll need to do is react to the message.</p>
         <br>
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="weekly" role="tabpanel" aria-labelledby="weekly-tab">
-                {% for challenge in weekly_challenges %}
-                    {% if forloop.first %}<div class="row">{% endif %}
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title">{{ challenge.title }}</h1>
-                            <hr class="my-1">
-                            <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary">Submit</button>
-                            <a href="{% url 'home:view' challenge.id %}">
-                                <button class="btn btn-primary">View</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                {% if forloop.last %}</div>{% endif %}
-                {% endfor %}
-            </div>
-            <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
-                {% for challenge in monthly_challenges %}
-                    {% if forloop.first %}<div class="row">{% endif %}
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title">{{ challenge.title }}</h1>
-                            <hr class="my-1">
-                            <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary">Submit</button>
-                            <a href="{% url 'home:view' challenge.id %}">
-                                <button class="btn btn-primary">View</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                {% if forloop.last %}</div>{% endif %}
-                {% endfor %}
-            </div>
-            {% if is_helper %}
-                <div class="tab-pane fade" id="unreleased" role="tabpanel" aria-labelledby="unreleased-tab">
-                    {% for challenge in unreleased_challenges.weekly_challenges %}
-                        <h5 class="challenge-title">Weekly Challenges</h5>
-                        {% if forloop.first %}<div class="row">{% endif %}
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title">{{ challenge.title }}</h1>
-                                <hr class="my-1">
-                                <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary">Submit</button>
-                                <a href="{% url 'home:view' challenge.id %}">
-                                    <button class="btn btn-primary">View</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                    {% if forloop.last %}</div>{% endif %}
-                    {% endfor %}
-                {% if unreleased_challenges.weekly_challenges %}
-                <br>
-                <hr>
-                {% endif %}
-                    {% for challenge in unreleased_challenges.monthly_challenges %}
-                        <h5 class="challenge-title">Monthly Challenges</h5>
-                        {% if forloop.first %}<div class="row">{% endif %}
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title">{{ challenge.title }}</h1>
-                                <hr class="my-1">
-                                <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary">Submit</button>
-                                <a href="{% url 'home:view' challenge.id %}">
-                                    <button class="btn btn-primary">View</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                    {% if forloop.last %}</div>{% endif %}
-                    {% endfor %}
+        <p class="text-white">Challenges are posted every Monday and If you would like to get pinged for new challenges; react to <a href="https://discordapp.com/channels/501090983539245061/511344731608055818/715232946981961778">this message</a></p>
+    </div>
 
-                </div>
-            {% endif %}
-        </div>
-    {% endif %}
+{#    {% if challenges %}#}
+{#        <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">#}
+{#        <h1 class="display-4">Challenges</h1>#}
+{#        <p class="lead">Coming Soon....</p>#}
+{#        <hr class="my-4">#}
+{##}
+{#        <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">#}
+{#            <li class="nav-item" role="presentation">#}
+{#                <a class="flex-sm-fill text-sm-center nav-link active" id="weekly-tab" data-toggle="tab" href="#weekly" role="tab" aria-controls="home" aria-selected="true">Weekly</a>#}
+{#            </li>#}
+{#            {% if is_helper %}#}
+{#                <li class="nav-item" role="presentation">#}
+{#                    <a class="flex-sm-fill text-sm-center nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="profile" aria-selected="false">Monthly</a>#}
+{#                </li>#}
+{#                <li class="nav-item" role="presentation">#}
+{#                    <a class="flex-sm-fill text-sm-center nav-link" id="unreleased-tab" data-toggle="tab" href="#unreleased" role="tab" aria-controls="settings" aria-selected="false">Unreleased</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#        <br>#}
+{#        <div class="tab-content">#}
+{#            <div class="tab-pane fade show active" id="weekly" role="tabpanel" aria-labelledby="weekly-tab">#}
+{#                {% for challenge in weekly_challenges %}#}
+{#                    {% if forloop.first %}<div class="row">{% endif %}#}
+{#                <div class="col-sm-6">#}
+{#                    <div class="card">#}
+{#                        <div class="card-body">#}
+{#                            <h1 class="card-title">{{ challenge.title }}</h1>#}
+{#                            <hr class="my-1">#}
+{#                            <p class="card-text text-muted">{{ challenge.short_desc }}</p>#}
+{#                        </div>#}
+{#                        <div class="card-footer">#}
+{#                            <button class="btn btn-primary">Submit</button>#}
+{#                            <a href="{% url 'home:view' challenge.id %}">#}
+{#                                <button class="btn btn-primary">View</button>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}#}
+{#                {% if forloop.last %}</div>{% endif %}#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">#}
+{#                {% for challenge in monthly_challenges %}#}
+{#                    {% if forloop.first %}<div class="row">{% endif %}#}
+{#                <div class="col-sm-6">#}
+{#                    <div class="card">#}
+{#                        <div class="card-body">#}
+{#                            <h1 class="card-title">{{ challenge.title }}</h1>#}
+{#                            <hr class="my-1">#}
+{#                            <p class="card-text text-muted">{{ challenge.short_desc }}</p>#}
+{#                        </div>#}
+{#                        <div class="card-footer">#}
+{#                            <button class="btn btn-primary">Submit</button>#}
+{#                            <a href="{% url 'home:view' challenge.id %}">#}
+{#                                <button class="btn btn-primary">View</button>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}#}
+{#                {% if forloop.last %}</div>{% endif %}#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            {% if is_helper %}#}
+{#                <div class="tab-pane fade" id="unreleased" role="tabpanel" aria-labelledby="unreleased-tab">#}
+{#                    {% for challenge in unreleased_challenges.weekly_challenges %}#}
+{#                        <h5 class="challenge-title">Weekly Challenges</h5>#}
+{#                        {% if forloop.first %}<div class="row">{% endif %}#}
+{#                    <div class="col-sm-6">#}
+{#                        <div class="card">#}
+{#                            <div class="card-body">#}
+{#                                <h1 class="card-title">{{ challenge.title }}</h1>#}
+{#                                <hr class="my-1">#}
+{#                                <p class="card-text text-muted">{{ challenge.short_desc }}</p>#}
+{#                            </div>#}
+{#                            <div class="card-footer">#}
+{#                                <button class="btn btn-primary">Submit</button>#}
+{#                                <a href="{% url 'home:view' challenge.id %}">#}
+{#                                    <button class="btn btn-primary">View</button>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}#}
+{#                    {% if forloop.last %}</div>{% endif %}#}
+{#                    {% endfor %}#}
+{#                {% if unreleased_challenges.weekly_challenges %}#}
+{#                <br>#}
+{#                <hr>#}
+{#                {% endif %}#}
+{#                    {% for challenge in unreleased_challenges.monthly_challenges %}#}
+{#                        <h5 class="challenge-title">Monthly Challenges</h5>#}
+{#                        {% if forloop.first %}<div class="row">{% endif %}#}
+{#                    <div class="col-sm-6">#}
+{#                        <div class="card">#}
+{#                            <div class="card-body">#}
+{#                                <h1 class="card-title">{{ challenge.title }}</h1>#}
+{#                                <hr class="my-1">#}
+{#                                <p class="card-text text-muted">{{ challenge.short_desc }}</p>#}
+{#                            </div>#}
+{#                            <div class="card-footer">#}
+{#                                <button class="btn btn-primary">Submit</button>#}
+{#                                <a href="{% url 'home:view' challenge.id %}">#}
+{#                                    <button class="btn btn-primary">View</button>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}#}
+{#                    {% if forloop.last %}</div>{% endif %}#}
+{#                    {% endfor %}#}
+{##}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    {% endif %}#}
 
 {% endblock %}
