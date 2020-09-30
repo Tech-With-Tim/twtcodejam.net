@@ -5,9 +5,9 @@ from django.views import View
 
 from TWT.context import get_discord_context
 from ..models import Challenge
-from django.contrib import messages
 
-class HomeView(View):
+
+class UnreleasedView(View):
     """The main landing page for challenges."""
 
     def get_context(self, request: WSGIRequest):
@@ -19,6 +19,7 @@ class HomeView(View):
                                         if challenge.type == "WE" and challenge.posted and not challenge.ended]
         context["unreleased_challenges"] = {"monthly_challenges": [], "weekly_challenges": []}
         context["ended_challenges"] = {"MO": [], "WE": []}
+
         for challenge in challenges:
             if challenge.type == "WE" and not challenge.posted:
                 context["unreleased_challenges"]["weekly_challenges"].append(challenge)
@@ -37,10 +38,6 @@ class HomeView(View):
         print(context["challenges"])
         if context["challenges"]:
             print(True)
-        if not context["is_verified"]:
-            messages.add_message(request,
-                                 messages.WARNING,
-                                 "You are not verified on the server Join Our community to Continue")
         return render(request=request,
                       template_name="challenges/index.html",
                       context=context)
