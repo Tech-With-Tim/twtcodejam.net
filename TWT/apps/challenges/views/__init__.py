@@ -9,6 +9,7 @@ from .stop_team import StopTeams
 from .start_submission import StartSubmission
 from .stop_submission import StopSubmission
 from .start_team import StartTeams
+from .unreleased import UnreleasedView
 start = StartView.as_view()
 end = EndView.as_view()
 test = TestView.as_view()
@@ -19,3 +20,4 @@ start_team = StartTeams.as_view()
 stop_team = StopTeams.as_view()
 start_submission = StartSubmission.as_view()
 stop_submission = StopSubmission.as_view()
+unreleased_view = UnreleasedView.as_view()

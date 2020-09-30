@@ -13,7 +13,7 @@ class StartView(View):
     def get_context(self, request: WSGIRequest) -> dict:
         return get_discord_context(request=request)
 
-    def post(self, request: WSGIRequest, challenge_id: int):
+    def get(self, request: WSGIRequest, challenge_id: int):
         if not request.user.is_authenticated:
             messages.add_message(request,
                                  messages.INFO,
@@ -22,6 +22,12 @@ class StartView(View):
 
         context = self.get_context(request=request)
         if context["is_admin"] or context["is_challenge_host"]:
+            ongoing_challenges = Challenge.objects.filter(type='MO', ended=False, posted=True)
+            if len(ongoing_challenges) >0:
+                messages.add_message(request,
+                                     messages.INFO,
+                                     'There is already a challenge going on')
+                return redirect('timathon:Home')
             challenge = Challenge.objects.get(id=challenge_id)
             challenge.posted = True
             challenge.status = "RUNNING"

@@ -1,6 +1,6 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from TWT.context import get_discord_context
@@ -35,9 +35,11 @@ class UnreleasedView(View):
 
     def get(self, request: WSGIRequest) -> HttpResponse:
         context: dict = self.get_context(request=request)
+        if not context["is_verified"]:
+            return redirect('/')
         print(context["challenges"])
         if context["challenges"]:
             print(True)
         return render(request=request,
-                      template_name="challenges/index.html",
+                      template_name="challenges/unreleased.html",
                       context=context)

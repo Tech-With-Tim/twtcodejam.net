@@ -40,7 +40,7 @@
 
             <li class="nav-item">
                 {% if is_staff %}
-                    <a class="nav-link" href="#">Unreleased</a>
+                    <a class="nav-link" href="{% url 'home:unreleased' %}">Unreleased</a>
                 {% endif %}
 
             </li>
