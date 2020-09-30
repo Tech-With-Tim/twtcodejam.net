@@ -11,7 +11,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-md-6 ml-auto">
+        <ul class="navbar-nav m-md-6" style="margin: 0 auto">
             {% comment %}
                         <li class="nav-item dropdown">
                 <button class="btn text-white btn-outline-dark nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,11 +44,8 @@
                 {% endif %}
 
             </li>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item" style="position: absolute; right: 25px">
                     <a href="{% url 'home:logout' %}">
                         <button type="button" class="btn btn-dark">
                             <img class="rounded-circle" src="{{ avatar_url }}" width="32" height="32" alt="">
@@ -57,7 +54,7 @@
                     </a>
                 </li>
             {% else %}
-                <li class="nav-item">
+                <li class="nav-item" style="position: absolute; right: 25px">
                     <a href="{% provider_login_url 'discord' %}">
                         <button type="button" class="btn btn-dark">
                             <img src="{% static 'images/discord.png' %}" height="32" width="32" alt="">
