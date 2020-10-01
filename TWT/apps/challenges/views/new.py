@@ -48,7 +48,7 @@ class NewChallengeView(View):
         if form.is_valid():
             title = form.cleaned_data["title"]
             type = "WE" if form.cleaned_data["type"] == "Weekly" else "MO"
-            description = form.cleaned_data["description"]
+            description = form.data["description"]
             short_desc = form.cleaned_data["short_desc"]
             if short_desc == "":
                 short_desc = description.split('\r\n')[0]
@@ -57,7 +57,7 @@ class NewChallengeView(View):
                 type=type,
                 description=description,
                 short_desc=short_desc,
-                rules=form.cleaned_data["rules"],
+                rules=form.data["rules"],
                 author=request.user,
             )
             return redirect('/')

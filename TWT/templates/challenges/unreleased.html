@@ -4,63 +4,68 @@
 {% block title %}Unreleased{% endblock %}
 {% block content %}
     {% include 'base/navbar.html' %}
-     <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
-         <h1 class="display-4">Unreleased Challenges</h1>
-         <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
-             <li class="nav-item" role="presentation">
-                 <a class="flex-sm-fill text-sm-center nav-link" id="unreleased-tab" data-toggle="tab" href="#unreleased" role="tab" aria-controls="settings" aria-selected="false"></a>
-             </li>
-         </ul>
-         <br>
-         <div class="tab-content">
-               <div class="tab-pane fade show active" id="unreleased" role="tabpanel" aria-labelledby="unreleased-tab">
-                      {% for challenge in unreleased_challenges.weekly_challenges %}
-                          <h5 class="challenge-title">Weekly Challenges</h5>
-                          {% if forloop.first %}<div class="row">{% endif %}
-                      <div class="col-sm-6">
-                          <div class="card">
-                              <div class="card-body">
-                                  <h1 class="card-title">{{ challenge.title }}</h1>
-                                  <hr class="my-1">
-                                  <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                              </div>
-                              <div class="card-footer">
-                                  <button class="btn btn-primary">Submit</button>
-                                  <a href="{% url 'home:view' challenge.id %}">
-                                      <button class="btn btn-primary">View</button>
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                      {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                      {% if forloop.last %}</div>{% endif %}
-                      {% endfor %}
-                  {% if unreleased_challenges.weekly_challenges %}
-                  <br>
-                  <hr>
-                  {% endif %}
-                      {% for challenge in unreleased_challenges.monthly_challenges %}
-                          <h5 class="challenge-title">Monthly Challenges</h5>
-                          {% if forloop.first %}<div class="row">{% endif %}
-                      <div class="col-sm-6">
-                          <div class="card">
-                              <div class="card-body">
-                                  <h1 class="card-title">{{ challenge.title }}</h1>
-                                  <hr class="my-1">
-                                  <p class="card-text text-muted">{{ challenge.short_desc }}</p>
-                              </div>
-                              <div class="card-footer">
-                                  <a href="{% url 'home:start' challenge.id %}">
-                                      <button class="btn btn-primary">Start</button>
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                      {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
-                      {% if forloop.last %}</div>{% endif %}
-                      {% endfor %}
+    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+        <h1 class="display-4">Unreleased Challenges</h1>
+        <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="flex-sm-fill text-sm-center nav-link" id="unreleased-tab" data-toggle="tab" href="#unreleased" role="tab" aria-controls="settings" aria-selected="false"></a>
+            </li>
+        </ul>
+        <br>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="unreleased" role="tabpanel" aria-labelledby="unreleased-tab">
+                {% for challenge in unreleased_challenges.weekly_challenges %}
+                    <h5 class="challenge-title">Weekly Challenges</h5>
+                    {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">{{ challenge.title }}</h1>
+                            <div class="card-text text-muted">{{ challenge.short_desc }}</div>
+                            <hr class="my-4">
+                            <div class="card-text">{{ challenge.description }}</div>
+                            <hr class="my-4">
+                            <div class="card-text">{{ challenge.rules }}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{#  url 'home:view' challenge.id #}#">
+                                <button class="btn btn-primary">Start</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
+                {% if unreleased_challenges.weekly_challenges %}
+                    <br>
+                    <hr>
+                {% endif %}
+                {% for challenge in unreleased_challenges.monthly_challenges %}
+                    <h5 class="challenge-title">Monthly Challenges</h5>
+                    {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="card-title">{{ challenge.title }}</h1>
+                            <div class="card-text text-muted">{{ challenge.short_desc }}</div>
+                            <hr class="my-4">
+                            <div class="card-text">{{ challenge.description }}</div>
+                            <hr class="my-4">
+                            <div class="card-text">{{ challenge.rules }}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'home:start' challenge.id %}">
+                                <button class="btn btn-primary">Start</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:2 %}</div><div class="row" style="margin-top: 10px;">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
 
-                  </div>
-         </div>
-     </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

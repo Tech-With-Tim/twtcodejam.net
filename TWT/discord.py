@@ -35,7 +35,6 @@ class Discord:
         except Exception as e:
             raise e
 
-    def get_guild(self, guild_id: int = 501090983539245061):
     def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None) -> dict:
         message = {
             'username': 'TWT Web',
