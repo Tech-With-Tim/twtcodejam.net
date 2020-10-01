@@ -1,8 +1,9 @@
-from typing import Callable
+from datetime import datetime
+from typing import Callable, List
 import requests
 import json
 
-from our_secrets import TOKEN
+from our_secrets import TOKEN, LOG_WEBHOOK
 from .cache import TimedCache
 
 
@@ -35,6 +36,32 @@ class Discord:
             raise e
 
     def get_guild(self, guild_id: int = 501090983539245061):
+    def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None) -> dict:
+        message = {
+            'username': 'TWT Web',
+            'avatar_url': 'https://images-ext-1.discordapp.net/external/FUjBZblkJRsrA_f_1VH37gLQzw_V87zLJcIxOMBn3TE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/518054642979045377/2043bb80cfba102dd2adc37f41f94f1e.png',
+            'embeds': data
+        }
+
+        print(f"POST @ {retry.__name__}")
+
+        try:
+            self.methods["POST"](url=LOG_WEBHOOK, json=message)
+        except Exception as e:
+            raise e
+
+    def send_webhook(self, title: str, description: str, fields=[], timestamp: bool = True):
+        data = [{
+            'title': title,
+            'description': description,
+            "fields": fields
+        }]
+
+        if timestamp:
+            data[0]["timestamp"] = str(datetime.utcnow())
+
+        self.__post_webhook(retry=self.send_webhook, data=data)
+
         return self.__request(retry=self.get_guild, url="guilds/{}".format(guild_id))
 
     def get_member(self, member_id: int, guild_id: int = 501090983539245061):
@@ -58,7 +85,7 @@ ALL_ROLES = {
     "MOD": MOD_ID,
     "HELPER": HELPER_ID,
     "CHALLENGE_HOST": CHALLENGE_HOST,
-    "VERIFIED":VERIFIED_ID
+    "VERIFIED": VERIFIED_ID
 }
 
 __cache = TimedCache(seconds=10)
