@@ -4,7 +4,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-
+from random import randint
 from TWT.apps.challenges.models import Challenge
 from TWT.apps.timathon.models import Team
 from TWT.context import get_discord_context
@@ -28,7 +28,11 @@ class View_teams(View):
                 pass
             else:
                 new_member["user_id"] = user.uid
-                new_member["avatar_url"] = user.get_avatar_url()
+                avatar_url = user.get_avatar_url()
+                if avatar_url.endswith("None.png"):
+                    random = randint(0, 4)
+                    avatar_url = f'https://cdn.discordapp.com/embed/avatars/{random}.png'
+                new_member["avatar_url"] = avatar_url
                 new_member["username"] = user.extra_data["username"]
                 new_member["discriminator"] = user.extra_data["discriminator"]
             discord_members.append(new_member)

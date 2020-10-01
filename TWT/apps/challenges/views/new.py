@@ -60,7 +60,7 @@ class NewChallengeView(View):
                 rules=form.data["rules"],
                 author=request.user,
             )
-            return redirect('/')
+            return redirect('home:unreleased')
 
         print("Invalid form")
         return redirect(reverse('home:new'))

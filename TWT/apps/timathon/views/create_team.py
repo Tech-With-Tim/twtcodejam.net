@@ -48,7 +48,7 @@ class Create_team(View):
                                  messages.INFO,
                                  "Team successfully created!")
             client.send_webhook("Teams", f"<@{context['discord_user'].uid}> create a team",
-                                [{"name": "name", "value": new_team.name}, {"name": "invite", "value": new_team.invite}])
+                                [{"name": "name", "value": new_team.name}, {"name": "invite", "value": str(new_team.invite)}])
             return redirect('timathon:Home')
         messages.add_message(request,
                              messages.WARNING,

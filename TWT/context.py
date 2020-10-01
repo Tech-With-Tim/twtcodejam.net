@@ -19,6 +19,7 @@ def get_discord_context(request: WSGIRequest) -> dict:
         if avatar_url.endswith("None.png"):
             random = randint(0,4)
             avatar_url = f'https://cdn.discordapp.com/embed/avatars/{random}.png'
+
         context["avatar_url"] = avatar_url
         context["username"] = user.extra_data["username"]
         context["discriminator"] = user.extra_data["discriminator"]
