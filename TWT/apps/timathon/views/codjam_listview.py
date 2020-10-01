@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -14,6 +15,9 @@ class PreviousView(View):
 
     def get(self, request: WSGIRequest) -> HttpResponse:
         context: dict = self.get_context(request=request)
+        if not context["is_verified"]:
+            messages.add_message(request, messages.WARNING, "You are not in the server")
+            return redirect('/')
         challenge_list = []
         challenges = Challenge.objects.filter(ended=True, posted=True, type='MO')
         for challenge in challenges:

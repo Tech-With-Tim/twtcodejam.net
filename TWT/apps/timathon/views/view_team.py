@@ -1,4 +1,5 @@
 from allauth.socialaccount.models import SocialAccount
+from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -12,7 +13,9 @@ from TWT.context import get_discord_context
 class View_teams(View):
     def get_context(self, request: WSGIRequest, team_ID) -> dict:
         context = get_discord_context(request)
-
+        if not context["is_verified"]:
+            messages.add_message(request, messages.WARNING, "You are not in the server")
+            return redirect('/')
         team = Team.objects.get(ID=team_ID)
 
         members = team.members.all()

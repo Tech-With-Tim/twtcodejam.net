@@ -64,6 +64,10 @@ class Submission_View(View):
                                  messages.INFO,
                                  'Sign In')
             return redirect('/')
+        context: dict = self.get_context(request=request)
+        if not context["is_verified"]:
+            messages.add_message(request, messages.WARNING, "You are not in the server")
+            return redirect('/')
         try:
             challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
         except Challenge.DoesNotExist:
@@ -76,7 +80,6 @@ class Submission_View(View):
                                  messages.WARNING,
                                  'Submissions Closed Right Now')
             return redirect('home:home')
-        context: dict = self.get_context(request=request)
         return render(
             request=request,
             template_name="timathon/submit.html",

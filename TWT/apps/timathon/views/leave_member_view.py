@@ -19,6 +19,9 @@ class LeaveTeam(View):
         if not request.user.is_authenticated:
             return redirect('/')
         context = self.get_context(request=request)
+        if not context["is_verified"]:
+            messages.add_message(request, messages.WARNING, "You are not in the server")
+            return redirect('/')
         user = request.user
         challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
         if len(Team.objects.filter(challenge=challenge, members=user)) <= 0:
