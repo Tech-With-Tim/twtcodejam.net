@@ -2,6 +2,8 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+
+from TWT.discord import client
 from ..models.team import Team
 from TWT.context import get_discord_context
 from django import forms
@@ -23,6 +25,8 @@ class LeaveTeam(View):
             messages.add_message(request,
                                  messages.WARNING,
                                  "You are not in a team !")
+            client.send_webhook("Teams", f"<@{context['user'].uid}> tried leaving his team",
+                                [{"name": "error", "value": "They are not in a team"}])
             return redirect('timathon:Home')
         team = Team.objects.get(challenge=challenge, members=user)
         team.members.remove(user)
@@ -32,4 +36,5 @@ class LeaveTeam(View):
         messages.add_message(request,
                              messages.INFO,
                              "Removed you from the team!")
+        client.send_webhook("Teams", f"<@{context['user'].uid}> left his team",)
         return redirect('timathon:Home')

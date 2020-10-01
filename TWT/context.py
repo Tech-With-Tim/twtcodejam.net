@@ -14,6 +14,7 @@ def get_discord_context(request: WSGIRequest) -> dict:
     else:
         context["user_id"] = user.uid
         #context["avatar_url"] = user.get_avatar_url()
+        context['user'] = user
         avatar_url = user.get_avatar_url()
         if avatar_url.endswith("None.png"):
             random = randint(0,4)
