@@ -35,7 +35,7 @@ class Submission_View(View):
                 messages.add_message(request,
                                      messages.WARNING,
                                      'You have already submitted.')
-                client.send_webhook("Submissions", f"<@{context['user'].uid}> tried submitting more than once")
+                client.send_webhook("Submissions", f"<@{context['discord_user'].uid}> tried submitting more than once")
                 return redirect(reverse('home:home'))
             Submission.objects.create(
                 github_link=github_link,
@@ -48,7 +48,7 @@ class Submission_View(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'You have successfully submitted your project in the code jam. ')
-            client.send_webhook("Submissions", f"<@{context['user'].uid}> submitted their solution")
+            client.send_webhook("Submissions", f"<@{context['discord_user'].uid}> submitted their solution")
             return redirect('/')
         print(form.errors)
         print(form["github_link"])

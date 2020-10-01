@@ -23,7 +23,7 @@ class AddMember(View):
             messages.add_message(request, messages.WARNING, "You are not in the server")
             return redirect('/')
         user = request.user
-        discord_user = SocialAccount.objects.get(user_id=user.id)
+        discord_user = context['discord_user']
         team = Team.objects.get(invite=invite)
         challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
         user_teams = Team.objects.filter(challenge=challenge, members=user)

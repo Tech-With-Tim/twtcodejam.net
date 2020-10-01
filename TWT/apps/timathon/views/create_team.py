@@ -35,7 +35,7 @@ class Create_team(View):
                 messages.add_message(request,
                                      messages.WARNING,
                                      "You are Already in a Team")
-                client.send_webhook("Teams", f"<@{context['user'].uid}> tried creating a team",
+                client.send_webhook("Teams", f"<@{context['discord_user'].uid}> tried creating a team",
                                     fields=[{"name": "Error", "value": "The are already in a team"}])
                 return redirect('/')
             new_team = Team.objects.create(
@@ -47,7 +47,7 @@ class Create_team(View):
             messages.add_message(request,
                                  messages.INFO,
                                  "Team successfully created!")
-            client.send_webhook("Teams", f"<@{context['user'].uid}> create a team",
+            client.send_webhook("Teams", f"<@{context['discord_user'].uid}> create a team",
                                 [{"name": "name", "value": new_team.name}, {"name": "invite", "value": new_team.invite}])
             return redirect('timathon:Home')
         messages.add_message(request,
@@ -68,14 +68,14 @@ class Create_team(View):
             messages.add_message(request,
                                  messages.WARNING,
                                  'No ongoing code jam.')
-            client.send_webhook("Teams", f"<@{context['user'].uid}> tried creating a team",
+            client.send_webhook("Teams", f"<@{context['discord_user'].uid}> tried creating a team",
                                 fields=[{"name": "Error", "value": "There is not codejam ongoing"}])
             return redirect('home:home')
         if challenge.team_creation_status == False:
             messages.add_message(request,
                                  messages.WARNING,
                                  'Team Submissions are closed Right Now')
-            client.send_webhook("Teams", f"<@{context['user'].uid}> tried creating a team",
+            client.send_webhook("Teams", f"<@{context['discord_user'].uid}> tried creating a team",
                                 fields=[{"name": "Error", "value": "Team submissions are closed"}])
             return redirect('home:home')
         return render(

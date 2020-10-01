@@ -28,7 +28,7 @@ class LeaveTeam(View):
             messages.add_message(request,
                                  messages.WARNING,
                                  "You are not in a team !")
-            client.send_webhook("Teams", f"<@{context['user'].uid}> tried leaving his team",
+            client.send_webhook("Teams", f"<@{context['discord_user'].uid}> tried leaving his team",
                                 [{"name": "error", "value": "They are not in a team"}])
             return redirect('timathon:Home')
         team = Team.objects.get(challenge=challenge, members=user)
@@ -39,5 +39,5 @@ class LeaveTeam(View):
         messages.add_message(request,
                              messages.INFO,
                              "Removed you from the team!")
-        client.send_webhook("Teams", f"<@{context['user'].uid}> left his team",)
+        client.send_webhook("Teams", f"<@{context['discord_user'].uid}> left his team",)
         return redirect('timathon:Home')
