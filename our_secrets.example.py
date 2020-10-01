@@ -4,7 +4,7 @@ We need to use `our_secrets` since django has a `secrets.py` file somewhere.
 Make a new file for your own secrets, named `our_secrets`. Put the following variables in here:
 """
 
-SECRET_KEY = 'your secret key'
+SECRET_KEY = 'Your secret key'
 
 DATABASES = {
     'default': {
