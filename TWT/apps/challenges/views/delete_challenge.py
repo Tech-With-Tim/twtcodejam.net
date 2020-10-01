@@ -5,9 +5,9 @@ from django.http import HttpResponse
 from django.views import View
 from ..models import Challenge
 from TWT.context import get_discord_context
-from TWT.discord import client
 
-class EndView(View):
+
+class DeleteView(View):
     """View for ending a challenge"""
 
     def get_context(self, request: WSGIRequest) -> dict:
@@ -24,18 +24,12 @@ class EndView(View):
         if not context["is_verified"]:
             return redirect('/')
         if context["is_admin"] or context["is_challenge_host"]:
-            challenge = get_object_or_404(Challenge, id=challenge_id) # Challenge.objects.get(id=challenge_id)
-            challenge.ended = True
-            challenge.status = "ENDED"
-            challenge.team_creation_status = False
-            challenge.submissions_status = False
-            challenge.save()
+            challenge = get_object_or_404(Challenge, id=challenge_id)
+            challenge.delete()
             messages.add_message(request,
                                  messages.INFO,
-                                 'Challenge has been closed!')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the codejam. Thanks for participating",
-                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/')}"}])
-            return redirect('/')
+                                 'Challenge has been deleted!')
+            return redirect('home:unreleased')
 
         else:
             messages.add_message(request,

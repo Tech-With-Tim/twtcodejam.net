@@ -67,10 +67,8 @@ class HomeView(View):
         context = self.get_context(request)
 
         if not request.user.is_authenticated:
-            messages.add_message(request,
-                                 messages.WARNING,
-                                 "Not logged in.")
             return redirect('/')
-
+        if not context["is_verified"]:
+            return redirect('/')
 
         return render(request, template_name='timathon/index.html', context=context)

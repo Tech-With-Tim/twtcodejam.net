@@ -1,6 +1,6 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 
 from TWT.discord import client
@@ -28,7 +28,7 @@ class Create_team(View):
         form = CreateTeamForm(request.POST)
         if form.is_valid():
             user = request.user
-            challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
+            challenge = get_object_or_404(Challenge, ended=False, posted=True, type='MO')# Challenge.objects.get(ended=False, posted=True, type='MO')
             name = form.cleaned_data["name"]
             user_teams = Team.objects.filter(challenge=challenge, members=user)
             if len(user_teams) != 0:
@@ -60,7 +60,6 @@ class Create_team(View):
             return redirect('/')
         context = self.get_context(request=request)
         if not context["is_verified"]:
-            messages.add_message(request, messages.WARNING, "You are not in the server")
             return redirect('/')
         try:
             challenge = Challenge.objects.get(ended=False, posted=True, type='MO')

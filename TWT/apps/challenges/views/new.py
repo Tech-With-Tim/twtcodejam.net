@@ -2,7 +2,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views import View
-
+from django.contrib import messages
 from TWT.context import get_discord_context
 from ..models import Challenge
 
@@ -28,7 +28,12 @@ class NewChallengeView(View):
             return redirect('/')
 
         context = self.get_context(request=request)
+        if not context["is_verified"]:
+            return redirect('/')
         if not context["is_staff"]:
+            messages.add_message(request,
+                                 messages.INFO,
+                                 'You are not the part of staff in the server.')
             return redirect('/')
         return render(
             request=request,

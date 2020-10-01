@@ -30,7 +30,7 @@ class Submission_View(View):
             description = form.cleaned_data["description"]
             github_link = form.cleaned_data["github_link"]
             challenge = Challenge.objects.get(type='MO', ended=False, posted=True)
-            team = Team.objects.get(challenge=challenge, members=request.user)
+            team = get_object_or_404(challenge=challenge, members=request.user) # Team.objects.get(challenge=challenge, members=request.user)
             if len(Submission.objects.filter(challenge=challenge, team=team))!=0:
                 messages.add_message(request,
                                      messages.WARNING,
@@ -66,7 +66,6 @@ class Submission_View(View):
             return redirect('/')
         context: dict = self.get_context(request=request)
         if not context["is_verified"]:
-            messages.add_message(request, messages.WARNING, "You are not in the server")
             return redirect('/')
         try:
             challenge = Challenge.objects.get(ended=False, posted=True, type='MO')

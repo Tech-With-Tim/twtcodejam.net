@@ -2,7 +2,7 @@ from allauth.socialaccount.models import SocialAccount
 from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from random import randint
 from TWT.apps.challenges.models import Challenge
@@ -14,9 +14,8 @@ class View_teams(View):
     def get_context(self, request: WSGIRequest, team_ID) -> dict:
         context = get_discord_context(request)
         if not context["is_verified"]:
-            messages.add_message(request, messages.WARNING, "You are not in the server")
             return redirect('/')
-        team = Team.objects.get(ID=team_ID)
+        team = get_object_or_404(Team,ID=team_ID)# Team.objects.get(ID=team_ID)
 
         members = team.members.all()
         discord_members = []
@@ -46,7 +45,8 @@ class View_teams(View):
         if not request.user.is_authenticated:
             return redirect('/')
         context = self.get_context(request=request, team_ID=team_ID)
-
+        if not context["is_verified"]:
+            return redirect('/')
         return render(
             request=request,
             template_name="timathon/view_team.html",

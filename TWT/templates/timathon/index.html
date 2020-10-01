@@ -36,6 +36,26 @@
                     {{ current_challenge.status.capitalize }}
                 </div>
             </div>
+            <div class="row" style="margin-right: 5px; margin-left: 5px; height: fit-content">
+                {% if is_challenge_host %}
+                    <a class="btn btn-danger float-right" href="{% url 'home:end' current_challenge.id %}">End</a>
+                    {% if current_challenge.team_creation_status %}
+                        <a class="btn btn-danger float-left" href="{% url 'home:StopTeams' current_challenge.id %}">Stop Team Creation</a>
+                    {% else %}
+                        <a class="btn btn-success  float-left" href="{% url 'home:StartTeams' current_challenge.id %}">Start Team Creation</a>
+                    {% endif %}
+                    {% if current_challenge.submissions_status %}
+                        <a class="btn btn-danger" href="{% url 'home:StopSubmissions' current_challenge.id %}">Stop Submissions</a>
+                    {% else %}
+                        <a class="btn btn-success" href="{% url 'home:StartSubmission' current_challenge.id %}">Start Submissions</a>
+                    {% endif %}
+                {% endif %}
+                {% if is_staff %}
+                    {% if current_challenge.submissions_status %}
+                        <a class="btn btn-info" href="#">View Submissions</a>
+                    {% endif %}
+                {% endif %}
+            </div>
             <hr class="my-4">
             <h5>Description</h5>
             <pre>{{ current_challenge.description | markdownify }}</pre>

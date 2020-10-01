@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home',),
     path('logout/', views.logout, name="logout"),
     path('new/', views.new, name="new"),
+    path('delete/<int:challenge_id>', views.delete_view, name="delete"),
     #  path('view/<int:challenge_id>/', views.view, name="view"),
     path('start/<int:challenge_id>/', views.start, name="start"),
     path('end/<int:challenge_id>/', views.end, name="end"),

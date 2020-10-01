@@ -1,7 +1,7 @@
 from allauth.socialaccount.models import SocialAccount
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from ..models.team import Team
 from TWT.context import get_discord_context
@@ -20,12 +20,11 @@ class AddMember(View):
             return redirect('/')
         context = self.get_context(request=request)
         if not context["is_verified"]:
-            messages.add_message(request, messages.WARNING, "You are not in the server")
             return redirect('/')
         user = request.user
         discord_user = context['discord_user']
-        team = Team.objects.get(invite=invite)
-        challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
+        team = get_object_or_404(Team, invite=invite)# Team.objects.get(invite=invite)
+        challenge = get_object_or_404(Challenge, ended=False, posted=True, type='MO')#Challenge.objects.get(ended=False, posted=True, type='MO')
         user_teams = Team.objects.filter(challenge=challenge, members=user)
         if len(user_teams) != 0:
             messages.add_message(request,
