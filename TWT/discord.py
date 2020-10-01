@@ -62,6 +62,7 @@ class Discord:
 
         self.__post_webhook(retry=self.send_webhook, data=data)
 
+    def get_guild(self, guild_id: int = 501090983539245061):
         return self.__request(retry=self.get_guild, url="guilds/{}".format(guild_id))
 
     def get_member(self, member_id: int, guild_id: int = 501090983539245061):
