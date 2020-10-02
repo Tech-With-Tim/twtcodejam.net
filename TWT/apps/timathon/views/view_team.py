@@ -1,7 +1,7 @@
 from allauth.socialaccount.models import SocialAccount
 from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from random import randint
@@ -14,7 +14,8 @@ class View_teams(View):
     def get_context(self, request: WSGIRequest, team_ID) -> dict:
         context = get_discord_context(request)
         if not context["is_verified"]:
-            return redirect('/')
+            return context
+
         team = get_object_or_404(Team,ID=team_ID)# Team.objects.get(ID=team_ID)
 
         members = team.members.all()
@@ -44,7 +45,13 @@ class View_teams(View):
     def get(self, request: WSGIRequest, team_ID) -> HttpResponse:
         if not request.user.is_authenticated:
             return redirect('/')
-        context = self.get_context(request=request, team_ID=team_ID)
+        try:
+           context = self.get_context(request=request, team_ID=team_ID)
+        except Http404:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 'Team Not Found')
+            return redirect('/')
         if not context["is_verified"]:
             return redirect('/')
         return render(
