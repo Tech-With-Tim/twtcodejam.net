@@ -5,24 +5,13 @@
 {% load markdownify %}
 
 {% block stylesheets %}
-    <style>
-    pre {
-        white-space: pre-wrap;
-        white-space: -moz-pre-wrap;
-        white-space: pre-wrap;
-        white-space: -o-pre-wrap;
-        word-wrap: break-word;
-        font-family: inherit;
-        font-size: inherit;
-        overflow: hidden;
-    }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/timathonHome.css' %}"/>
 {% endblock %}
 
 {% block content %}
     {% include "base/navbar.html" %}
 
-    <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
+    <div class="container" style="margin-top: 2%;">
         {% if current_challenge is None %}
             <h1 class="display-4 text-center">There is no active timathon right now</h1>
         {% else %}
@@ -36,7 +25,7 @@
                     {{ current_challenge.status.capitalize }}
                 </div>
             </div>
-            <div class="row" style="margin-right: 5px; margin-left: 5px; height: fit-content">
+            <div class="buttons-grid" style="margin-right: 5px; margin-left: 5px; height: fit-content">
                 {% if is_challenge_host %}
                     <a class="btn btn-danger float-right" href="{% url 'home:end' current_challenge.id %}">End</a>
                     {% if current_challenge.team_creation_status %}
@@ -56,7 +45,7 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <hr class="my-4">
+            <hr>
             <h5>Description</h5>
             <pre>{{ current_challenge.description | markdownify }}</pre>
             <br>
@@ -71,7 +60,7 @@
             </div>
 
             {% if teams %}
-                <div style="display: flex; flex-direction: row">
+                <div class="temas">
                     {% for team in teams %}
                         <div class="card text-white bg-info mb-3" style="max-width: 20rem; margin: 5px">
                             <div class="card-header">Team {{ forloop.counter }}</div>

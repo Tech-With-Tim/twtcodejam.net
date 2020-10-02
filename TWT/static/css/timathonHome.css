@@ -1,0 +1,50 @@
+pre {
+    color: white;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+*{
+    color: white;
+}
+
+.buttons-grid{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+}
+
+hr{
+    background-color: #e2e2e2;
+    margin: 20px 0;
+}
+
+.teams{
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 768px){
+    .buttons-grid{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .buttons-grid > .btn {
+        flex: 1;
+        width: 100%;
+    }
+    .teams{
+        display: grid;
+        grid-gap: 15px;
+    }
+    .team-member{
+        margin: 5px 0;
+    }
+}
