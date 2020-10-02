@@ -40,7 +40,7 @@ class HomeView(View):
         if not context["is_verified"]:
             messages.add_message(request,
                                  messages.WARNING,
-                                 "You are not verified on the server Join Our community to Continue")
+                                 "You're not verified. Please join our server to continue.")
         return render(request=request,
                       template_name="challenges/index.html",
                       context=context)
