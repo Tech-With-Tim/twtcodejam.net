@@ -1,0 +1,8 @@
+*{
+    color: white;
+}
+
+.members{
+    display: grid;
+    grid-gap: 15px;
+}
