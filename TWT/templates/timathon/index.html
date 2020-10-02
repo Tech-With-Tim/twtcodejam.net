@@ -38,10 +38,20 @@
                     {% else %}
                         <a class="btn btn-success" href="{% url 'home:StartSubmission' current_challenge.id %}">Start Submissions</a>
                     {% endif %}
+                    {% if current_challenge.voting_status %}
+                        <a class="btn btn-danger" href="{% url 'home:StopVoting' current_challenge.id %}">Stop Voting</a>
+                    {% else %}
+                        <a class="btn btn-success" href="{% url 'home:StartVoting' current_challenge.id %}">Start Voting</a>
+                    {% endif %}
+
                 {% endif %}
-                {% if is_staff %}
-                    {% if current_challenge.submissions_status %}
-                        <a class="btn btn-info" href="#">View Submissions</a>
+                {% if current_challenge.voting_status %}
+                    <a class="btn btn-info" href="#">View Submissions</a>
+                {% else %}
+                    {% if is_staff %}
+                        {% if not current_challenge.team_creation_status %}
+                            <a class="btn btn-info" href="#">View Submissions</a>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             </div>
@@ -54,9 +64,9 @@
             <br>
             <div class="row" style="margin: 0">
                 <h4 style="flex: 1">Teams</h4>
-            <form action="{% url 'timathon:Create_Team' %}">
-                {% if in_team == False %}<button type="submit" class="btn btn-success" style="color: white">Create a team</button>{% endif %}
-            </form>
+                <form action="{% url 'timathon:Create_Team' %}">
+                    {% if in_team == False and current_challenge.team_creation_status %}<button type="submit" class="btn btn-success" style="color: white">Create a team</button>{% endif %}
+                </form>
             </div>
 
             {% if teams %}
@@ -68,12 +78,12 @@
                                 <h5 class="card-title text-white">Name</h5>
                                 <p class="card-text text-white">{{ team.name }}</p>
                                 <div style="padding-bottom: 10px;">
-                                {% for member in team.discord_members %}
-                                    <div class="team-member text-white">
-                                        <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
-                                        <span>{{ member.username }}</span>
-                                    </div>
-                                {% endfor %}
+                                    {% for member in team.discord_members %}
+                                        <div class="team-member text-white">
+                                            <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
+                                            <span>{{ member.username }}</span>
+                                        </div>
+                                    {% endfor %}
                                 </div>
                                 <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn btn-light">View Team</a>
                             </div>

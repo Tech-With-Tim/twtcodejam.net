@@ -30,7 +30,7 @@ class Submission_View(View):
             description = form.cleaned_data["description"]
             github_link = form.cleaned_data["github_link"]
             challenge = Challenge.objects.get(type='MO', ended=False, posted=True)
-            team = get_object_or_404(challenge=challenge, members=request.user) # Team.objects.get(challenge=challenge, members=request.user)
+            team = get_object_or_404(Team,challenge=challenge, members=request.user) # Team.objects.get(challenge=challenge, members=request.user)
             if len(Submission.objects.filter(challenge=challenge, team=team))!=0:
                 messages.add_message(request,
                                      messages.WARNING,
@@ -48,7 +48,9 @@ class Submission_View(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'You have successfully submitted your project in the code jam. ')
-            client.send_webhook("Submissions", f"<@{context['discord_user'].uid}> submitted their solution")
+            client.send_webhook("Submissions", f"<@{context['discord_user'].uid}> submitted their project",
+                                fields=[{"name": "repo", "value": f"{github_link}"}]
+                                )
             return redirect('/')
         print(form.errors)
         print(form["github_link"])

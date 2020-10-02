@@ -8,7 +8,7 @@ from random import randint
 from TWT.apps.challenges.models import Challenge
 from TWT.apps.timathon.models import Team
 from TWT.context import get_discord_context
-
+from ..models import Submission
 
 class View_teams(View):
     def get_context(self, request: WSGIRequest, team_ID) -> dict:
@@ -39,6 +39,13 @@ class View_teams(View):
         team.discord_members = discord_members
         print(team)
         context['team'] = team
+        context["challenge"] = team.challenge
+        if team.submitted:
+            try:
+                context["submission"] = Submission.objects.get(team=team, challenge=team.challenge)
+            except:
+                pass
+        print(context["challenge"].submissions_status)
         context['invite'] = request.build_absolute_uri(location=f"/timathon/member/{team.invite}")
         return context
 

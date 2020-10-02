@@ -50,7 +50,7 @@ class AddMember(View):
         team.members.add(user)
         team.save()
         messages.add_message(request,
-                             messages.INFO,
+                             messages.SUCCESS,
                              f"You have successfully joined {team.name} team")
         client.send_webhook("Teams", f"<@{discord_user.uid}> has successfully joined **{team.name}** (ID:{team.ID})")
         return redirect('timathon:Home')
