@@ -7,6 +7,16 @@
 
 {% block content %}
     {% include 'base/navbar.html' %}
+    <script type="text/javascript">
+        function Copy()
+        {
+            var Url = document.getElementById("paste-box");
+            Url.value = window.location.href;
+            Url.focus();
+            Url.select();
+            document.execCommand("Copy");
+        }
+    </script>
     <div class="jumbotron" style="margin: 2% 4% 1%;">
         <h1>TEAM</h1>
         <h5>Name</h5>
@@ -24,6 +34,10 @@
         {% if user in team.members.all %}
             <h6>Invite members in your team: <a href="{{ invite }}">{{invite}}</a></h6>
             <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
+             <input class="btn btn-dark btn-sm" value="Copy Url" onclick="Copy();" />
+            <br />
+
+            <textarea id="paste-box" rows="1" cols="30"></textarea>
             <span>(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
         {% else %}
 {#            <h1>vote for the team</h1> IMPLEMENT THIS WITH THE VOTING SYSTEM#}
