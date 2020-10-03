@@ -31,8 +31,8 @@
         <br>
         <center>
 
-            <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
             <a style="cursor: pointer; color:white;" class="btn btn-dark" onclick="Copy();">Copy Url</a>
+            <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
             </center>
             <br><br>
             <span style="font-weight: bold; margin-top: 15px; color: #d0d0d0; padding:10px;">(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
@@ -44,7 +44,7 @@
         <div class="container" style="margin-top: 25px">
             <br>
             <h3>Submission:</h3>
-            <a class="btn btn-dark" href="{{ submission.github_link }}">Github Repository</a>
+            <a class="btn btn-dark" style="background-color: #FF7746" href="{{ submission.github_link }}">Github Repository</a>
             <br><br>
             <h3>Description:</h3>
             <br>
