@@ -27,11 +27,11 @@
         <br>
                 <a class="btn btn-info" href="{% url 'timathon:Submission' %}">Submit</a>
             {% endif %}
-            <h6>Invite members in your team: <a id="invite" href="{{ invite }}">{{invite}}</a></h6>
+            <h6>Invite members in your team: <input style="width: auto; padding: 5px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" disabled="disabled" value="{{ invite }}">
+            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white; font-weight: bold;"  onclick="Copy();">Copy Invite</a></h6>
         <br>
         <center>
 
-            <a style="cursor: pointer; color:white;" class="btn btn-dark" onclick="Copy();">Copy Invite</a>
             <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
             </center>
             <br><br>
