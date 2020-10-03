@@ -10,7 +10,7 @@ pre {
     overflow: hidden;
 }
 
-*{
+*:not(.alert-text){
     color: white;
 }
 
