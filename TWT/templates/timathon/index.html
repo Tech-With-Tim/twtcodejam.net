@@ -46,11 +46,11 @@
 
                 {% endif %}
                 {% if current_challenge.voting_status %}
-                    <a class="btn btn-info" href="#">View Submissions</a>
+                    <a class="btn btn-info" href="{% url "timathon:submissionList" %}">View Submissions</a>
                 {% else %}
                     {% if is_staff %}
                         {% if not current_challenge.team_creation_status %}
-                            <a class="btn btn-info" href="#">View Submissions</a>
+                            <a class="btn btn-info" href="{% url "timathon:submissionList" %}">View Submissions</a>
                         {% endif %}
                     {% endif %}
                 {% endif %}
