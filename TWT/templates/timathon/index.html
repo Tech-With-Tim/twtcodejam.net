@@ -72,8 +72,9 @@
             {% if teams %}
                 <div class="teams">
                     {% for team in teams %}
-                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; margin: 5px">
-                            <div class="card-header">Team {{ forloop.counter }}</div>
+                        <div class="card text-white mb-3" style="min-width:16rem;max-width:16rem; margin: 10px;border-radius: 20px; background-color:#232D3B;">
+                                                        <center>
+                            <div class="card-header"></div>
                             <div class="card-body text-info">
                                 <h5 class="card-title text-white">Name</h5>
                                 <p class="card-text text-white">{{ team.name }}</p>
@@ -84,9 +85,14 @@
                                             <span>{{ member.username }}</span>
                                         </div>
                                     {% endfor %}
+                                    <div class = card-footer>
+<!--                                         TODO pin button at bottom-->
+                                        <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn" style="background-color:#FF7746;color:white;bottom:0px;postion:fixed;">View Team</a>
+</div>
                                 </div>
-                                <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn btn-light">View Team</a>
                             </div>
+                            </center>
+
                         </div>
                     {% endfor %}
                 </div>

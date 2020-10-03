@@ -3,18 +3,17 @@
 {% load static %}
 
 {% block stylesheets %}
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="{% static 'css/timathonTeam.css' %}"/>
 {% endblock %}
 
 {% block content %}
     {% include 'base/navbar.html' %}
-    <div class="container" style="margin-top: 25px">
-        <h1 style="text-align: center">TEAM</h1>
-        <h5>Name</h5>
-        <p>{{ team.name }}</p>
+    <div class="container">
+        <center><h1 class="team-name">{{ team.name }}</h1></center>
         <div style="padding-bottom: 10px;">
-            <h5>Members</h5>
-            <div class="members">
+<!--            <h5>Members:</h5>-->
+            <div class="members-card">
                 {% for member in team.discord_members %}
                     <div class="team-member">
                         <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
@@ -25,23 +24,30 @@
         </div>
         {% if user in team.members.all %}
             {% if challenge.submissions_status and not team.submitted%}
+        <br>
                 <a class="btn btn-info" href="{% url 'timathon:Submission' %}">Submit</a>
             {% endif %}
             <h6>Invite members in your team: <a id="invite" href="{{ invite }}">{{invite}}</a></h6>
+        <br>
+        <center>
+
             <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
-            <a style="cursor: pointer" class="btn btn-dark" onclick="Copy();">Copy Url</a>
-            <br />
-            <span style="font-weight: bold; margin-top: 15px; color: #d0d0d0">(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
+            <a style="cursor: pointer; color:white;" class="btn btn-dark" onclick="Copy();">Copy Url</a>
+            </center>
+            <br><br>
+            <span style="font-weight: bold; margin-top: 15px; color: #d0d0d0; padding:10px;">(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
         {% else %}
             {#            <h1>vote for the team</h1> IMPLEMENT THIS WITH THE VOTING SYSTEM#}
         {% endif %}
     </div>
     {% if team.submitted %}
         <div class="container" style="margin-top: 25px">
-            <h3>Submission</h3>
+            <br>
+            <h3>Submission:</h3>
             <a class="btn btn-dark" href="{{ submission.github_link }}">Github Repository</a>
-
-            <h4>Description:</h4>
+            <br><br>
+            <h3>Description:</h3>
+            <br>
             <h6>{{ submission.description }}</h6>
 
         </div>

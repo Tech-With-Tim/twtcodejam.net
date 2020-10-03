@@ -1,8 +1,54 @@
-*{
-    color: white;
+
+
+ .container {
+ color:#F9F9FA;
+ font-family:Roboto;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding:15px;
+    transition: 0.3s;
+    width: 70%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 5px 35px 30px rgba(0,0,0,0.4);
+    background-color:#232D3B;
 }
 
-.members{
-    display: grid;
-    grid-gap: 15px;
+
+h2{
+padding:10px;
 }
+h3{
+padding:10px;
+}
+h5{
+padding: 10px;
+}
+h6{padding: 10px;
+}
+
+a{
+padding:10px;
+}
+
+.team-name{
+font-size:20px;
+padding: 10px;
+}
+
+
+
+.members-card {
+color:black;
+    display:inline-block;
+    margin: 20px 20px 40px 5px;
+    padding:10px;
+    transition: 0.3s;
+    width: 25%;
+    height: 100%;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.8);
+}
+
+
