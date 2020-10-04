@@ -5,8 +5,7 @@
 {% block stylesheets %}
 <style>
 .submission-view-container {
- color:#F9F9FA;
-
+    color:#F9F9FA;
     margin: auto;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -16,14 +15,22 @@
     height: 100%;
     border-radius: 20px;
     background-color:#232D3B;
+    text-align: center;
 }
 
 .title{
-opacity:0;
+    opacity:0;
+    transition: .2s ease;
+}
+
+.member {
+    display: inline-block;
+    text-align: center;
 }
 
 .member:hover .title {
-opacity:1;
+    transition: .2s ease;
+    opacity:1;
 }
 
 </style>
@@ -32,7 +39,6 @@ opacity:1;
 {% block title %}Code Jam Submission{% endblock %}
 {% block content %}
     {% include "base/navbar.html" %}
-<center>
     {% for submission in page_obj %}
         <br><div class="submission-view-container">
         <h2><b>{{ submission.team.name }}</b></h2><br>
@@ -46,7 +52,7 @@ opacity:1;
         {% endfor %}
         </div>
     {% endfor %}
-</center>
+
     <footer>
         {% block footer %}
     <div class="pagination">
