@@ -12,16 +12,17 @@
     <div class="container">
         <center><h1 class="team-name">{{ team.name }}</h1></center>
 
-        <div style="padding-bottom: 10px;">
+        <div class="members-container" style="padding-bottom: 10px;">
 <!--            <h5>Members:</h5>-->
-            <div class="members-card">
-                {% for member in team.discord_members %}
-                    <div class="team-member">
+            {% for member in team.discord_members %}
+                <div class="members-card">
+                    <div class="team-member" style="margin-top: 8px; margin-bottom: 8px;">
                         <img style="border-radius: 50%; width: 45px; margin-right: 5px; margin-left: 2px" src="{{ member.avatar_url }}" alt="pfp">
                         <span>{{ member.username }}</span>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+
         </div>
         
         <center>
