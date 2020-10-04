@@ -18,6 +18,7 @@ class Team(models.Model):
     submitted = models.BooleanField(default=False)
     votes = models.IntegerField(default=0)
     members = models.ManyToManyField(User)
+    voted_by = models.ManyToManyField(User, related_name='userwhovotedforteam')
 
     def __str__(self):
         return f"Team {self.ID} ({self.name}) for challenge {self.challenge.id}"

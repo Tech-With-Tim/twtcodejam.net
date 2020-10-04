@@ -40,15 +40,28 @@ padding: 10px;
 
 
 .members-card {
-color:white;
-    display:inline-block;
-    margin: 20px 20px 40px 5px;
+    color:white;
+    margin: 10px;
     padding:10px;
     transition: 0.3s;
-    width: 25%;
+    min-width: 25%;
     height: 100%;
     border-radius: 20px;
     background: #334153;
 }
+
+.members-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px){
+    .members-card{
+        flex: 1;
+        margin-right: 20px;
+    }
+}
+
 
 

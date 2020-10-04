@@ -44,6 +44,11 @@ hr{
     right: 0;
     left: 0;
     border-radius: 0 0 20px 20px;
+    background-color: #FF7746;
+}
+
+.view-team-btn:hover{
+    background-color: #e35522;
 }
 
 @media screen and (max-width: 768px){
@@ -56,9 +61,11 @@ hr{
         flex: 1;
         width: 100%;
     }
-    .teams{
-        display: grid;
-        grid-gap: 15px;
+
+    .teams > div{
+        flex: 1;
+        width: 100%;
+        margin: 0 5%;
     }
     .team-member{
         margin: 5px 0;

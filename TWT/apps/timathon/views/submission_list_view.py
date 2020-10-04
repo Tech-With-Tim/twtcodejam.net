@@ -1,6 +1,8 @@
 from django.contrib import messages
+from allauth.socialaccount.models import SocialAccount
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
+from random import randint
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import View
 from TWT.context import get_discord_context
@@ -34,6 +36,30 @@ class SubmissionListView(View):
                                  "The voting period is not open please wait")
             return redirect('timathon:Home')
         submissions = Submission.objects.filter(challenge=challenge)
+        for submission in submissions:
+            team = submission.team
+            members = team.members.all()
+            discord_members = []
+            for member in members:
+                new_member = {}
+                if member.id == request.user.id:
+                    is_in_team = True
+                try:
+                    user = SocialAccount.objects.get(user_id=member.id)
+                except SocialAccount.DoesNotExist:
+                    pass
+                else:
+                    new_member["user_id"] = user.uid
+                    avatar_url = user.get_avatar_url()
+                    if avatar_url.endswith("None.png"):
+                        random = randint(0, 4)
+                        avatar_url = f'https://cdn.discordapp.com/embed/avatars/{random}.png'
+                    new_member["avatar_url"] = avatar_url
+                    new_member["username"] = user.extra_data["username"]
+                    new_member["discriminator"] = user.extra_data["discriminator"]
+                discord_members.append(new_member)
+            team.discord_members = discord_members
+            submission.team = team
         paginator = Paginator(submissions, 5)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)

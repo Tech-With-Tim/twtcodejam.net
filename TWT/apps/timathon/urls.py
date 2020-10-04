@@ -10,5 +10,7 @@ urlpatterns = [
     path('submit/', views.submission, name="Submission"),
     path('member/<str:invite>',views.add_member,name="Add_member"),
     path('leave/',views.leave_team, name="LeaveTeam"),
-    path('submissionlist/',views.submission_list, name="submissionList")
+    path('submissionlist/',views.submission_list, name="submissionList"),
+    path('vote/<int:teamid>/', views.vote, name="VoteTeam"),
+    path('unvote/<int:teamid>/', views.unvote, name="UnvoteTeam"),
 ]
