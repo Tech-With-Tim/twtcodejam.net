@@ -40,7 +40,7 @@ padding: 10px;
 
 
 .members-card {
-color:black;
+color:white;
     display:inline-block;
     margin: 20px 20px 40px 5px;
     padding:10px;
@@ -48,7 +48,7 @@ color:black;
     width: 25%;
     height: 100%;
     border-radius: 20px;
-    background: rgba(255,255,255,0.8);
+    background: #334153;
 }
 
 
