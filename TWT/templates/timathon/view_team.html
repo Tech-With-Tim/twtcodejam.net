@@ -14,14 +14,15 @@
 
         <div class="members-container" style="padding-bottom: 10px;">
 <!--            <h5>Members:</h5>-->
-            <div class="members-card">
-                {% for member in team.discord_members %}
+            {% for member in team.discord_members %}
+                <div class="members-card">
                     <div class="team-member">
                         <img style="border-radius: 50%; width: 45px; margin-right: 5px; margin-left: 2px" src="{{ member.avatar_url }}" alt="pfp">
                         <span>{{ member.username }}</span>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+
         </div>
         
         <center>
