@@ -50,6 +50,7 @@
             <p style="font-weight: large;" class="text-white title">{{ team_member.username }}</p>
             </div>
         {% endfor %}
+        <a class="btn btn-dark" href="{% url "timathon:VoteTeam" submission.team.ID%}">Vote Testing NOT FINAL</a>
         </div>
     {% endfor %}
 
