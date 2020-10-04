@@ -23,14 +23,14 @@
             </div>
         </div>
         {% if user in team.members.all %}
-            {% if challenge.submissions_status and not team.submitted%}
-        <br>
-                <a class="btn btn-info" href="{% url 'timathon:Submission' %}">Submit</a>
-            {% endif %}
-            <h6>Invite members in your team: <input style="width: auto; padding: 5px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" disabled="disabled" value="{{ invite }}">
-            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white; font-weight: bold;"  onclick="Copy();">Copy Invite</a></h6>
+            <h6>Invite members in your team: <input style="width: auto; padding: 5px; margin-left: 4px; margin-right: 4px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" disabled="disabled" value="{{ invite }}">
+            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white;"  onclick="Copy();">Copy Invite</a></h6>
         <br>
         <center>
+
+            {% if challenge.submissions_status and not team.submitted%}
+                <a class="btn btn-info" style="margin-right: 10px;" href="{% url 'timathon:Submission' %}">Submit</a>
+            {% endif %}
 
             <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
             </center>
