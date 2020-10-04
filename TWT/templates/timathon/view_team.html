@@ -11,21 +11,26 @@
     {% include 'base/navbar.html' %}
     <div class="container">
         <center><h1 class="team-name">{{ team.name }}</h1></center>
+
         <div style="padding-bottom: 10px;">
 <!--            <h5>Members:</h5>-->
             <div class="members-card">
                 {% for member in team.discord_members %}
                     <div class="team-member">
-                        <img style="border-radius: 50%; width: 45px" src="{{ member.avatar_url }}" alt="pfp">
+                        <img style="border-radius: 50%; width: 45px; margin-right: 5px; margin-left: 2px" src="{{ member.avatar_url }}" alt="pfp">
                         <span>{{ member.username }}</span>
                     </div>
                 {% endfor %}
             </div>
         </div>
+        
+        <center>
         {% if user in team.members.all %}
             <h6>Invite members in your team: <input style="width: auto; padding: 5px; margin-left: 4px; margin-right: 4px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" disabled="disabled" value="{{ invite }}">
             <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white;"  onclick="Copy();">Copy Invite</a></h6>
         <br>
+        </center>
+
         <center>
 
             {% if challenge.submissions_status and not team.submitted%}
@@ -33,7 +38,7 @@
             {% endif %}
 
             <a class="btn btn-danger" href="{% url 'timathon:LeaveTeam' %}">Leave Team</a>
-            </center>
+        </center>
             <br><br>
             <span style="font-weight: bold; margin-top: 15px; color: #d0d0d0; padding:10px;">(Attention: If you leave the team and the team creation period is over then you will not be able to join the ongoing timathon)</span>
         {% else %}
