@@ -38,10 +38,10 @@ opacity:1;
         <h2><b>{{ submission.team.name }}</b></h2><br>
         <p class="text-white" style="font-size: large;">{{submission.description}}</p><br>
         <a class="btn btn-dark" style="width: 20%; font-weight: bold; background-color: #FF7746;" href="{{ submission.github_link }}" title="{{ submission.github_link }}">GitHub</a><br><br>
-        {% for team_member in submission.team.members.all %}
+        {% for team_member in submission.team.discord_members %}
             <div class="member">
-            <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ avatar_url }}" alt="pfp">
-            <p style="font-weight: large;" class="text-white title">{{ team_member }}</p>
+            <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}" alt="pfp">
+            <p style="font-weight: large;" class="text-white title">{{ team_member.username }}</p>
             </div>
         {% endfor %}
         </div>
