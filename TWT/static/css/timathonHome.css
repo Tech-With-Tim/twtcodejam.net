@@ -31,6 +31,19 @@ hr{
     flex-wrap: wrap;
     width:auto;
     height:auto;
+    margin-bottom: 50px;
+}
+
+.team-member + .team-member{
+    margin-top: 5px;
+}
+
+.view-team-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 0 0 20px 20px;
 }
 
 @media screen and (max-width: 768px){
