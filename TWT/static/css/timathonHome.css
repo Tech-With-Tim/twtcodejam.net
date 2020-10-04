@@ -56,9 +56,11 @@ hr{
         flex: 1;
         width: 100%;
     }
-    .teams{
-        display: grid;
-        grid-gap: 15px;
+
+    .teams > div{
+        flex: 1;
+        width: 100%;
+        margin: 0 5%;
     }
     .team-member{
         margin: 5px 0;
