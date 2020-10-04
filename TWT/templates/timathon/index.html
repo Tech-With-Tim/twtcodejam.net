@@ -83,8 +83,7 @@
                     {% for team in teams %}
                         <div class="card text-white mb-3" style="min-width:16rem;margin: 10px;border-radius: 20px; background-color:#232D3B;max-width: 16rem;">
                             <div class="card-body text-info">
-                                <h5 class="card-title text-white text-center">Name</h5>
-                                <p class="card-text text-white text-center">{{ team.name }}</p>
+                                <h5 class="card-title text-white text-center">{{ team.name }}</h5>
                                 <div style="padding-bottom: 10px;">
                                     {% for member in team.discord_members %}
                                         <div class="team-member text-white">
