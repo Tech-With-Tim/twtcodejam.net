@@ -30,5 +30,6 @@ class StopSubmission(View):
                                  messages.INFO,
                                  'Submissions Have been stopped')
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has stopped accepting submissions for the code jam",
-                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}])
+                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}],
+                                codeJam=True)
             return redirect('timathon:Home')
