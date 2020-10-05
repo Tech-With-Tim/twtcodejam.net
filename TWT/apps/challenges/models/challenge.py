@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from martor.models import MartorField
 
 
 class Challenge(models.Model):
@@ -34,8 +35,8 @@ class Challenge(models.Model):
     short_desc = models.TextField(max_length=100,
                                   help_text="A summary of the full challenge description.")
 
-    description = models.TextField(max_length=2000,
-                                   help_text="A full description of the challenge.")
+    description = MartorField(max_length=2000,
+                              help_text="A full description of the challenge.")
 
     rules = models.TextField(max_length=512,
                              help_text="A set of rules for this challenge.")
@@ -50,6 +51,7 @@ class Challenge(models.Model):
     team_creation_status = models.BooleanField(default=False)
     voting_status = models.BooleanField(default=False)
     members_voted = models.ManyToManyField(User, related_name='userwhovoted')
+
     @property
     def active(self):
         return self.posted and not self.ended

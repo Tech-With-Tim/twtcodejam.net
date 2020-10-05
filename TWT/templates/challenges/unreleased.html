@@ -1,9 +1,16 @@
 {% extends 'base/base.html' %}
 {% load socialaccount %}
 {% load static %}
+{% load martortags %}
+
 {% block title %}Unreleased{% endblock %}
+  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+  <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 {% block content %}
+
     {% include 'base/navbar.html' %}
+
     <div class="jumbotron" style="margin-top: 2%; margin-left: 4%; margin-right: 4%">
         <h1 class="display-4">Unreleased Challenges</h1>
         <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
@@ -23,7 +30,7 @@
                             <h1 class="card-title">{{ challenge.title }}</h1>
                             <div class="card-text text-muted">{{ challenge.short_desc }}</div>
                             <hr class="my-4">
-                            <div class="card-text">{{ challenge.description }}</div>
+                            <div class="card-text">{{ challenge.description|safe_markdown }}</div>
                             <hr class="my-4">
                             <div class="card-text">{{ challenge.rules }}</div>
                         </div>
@@ -50,7 +57,7 @@
                             <h1 class="card-title">{{ challenge.title }}</h1>
                             <div class="card-text text-muted">{{ challenge.short_desc }}</div>
                             <hr class="my-4">
-                            <div class="card-text">{{ challenge.description }}</div>
+                            <div class="card-text">{{ challenge.description|safe_markdown }}</div>
                             <hr class="my-4">
                             <div class="card-text">{{ challenge.rules }}</div>
                         </div>

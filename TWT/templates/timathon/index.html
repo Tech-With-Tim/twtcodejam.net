@@ -3,9 +3,13 @@
 {% load socialaccount %}
 {% load static %}
 {% load markdownify %}
+{% load martortags %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/timathonHome.css' %}"/>
+  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+  <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -59,7 +63,7 @@
 
             <h5>Description</h5>
             <div class="card text-white mb-3" style="margin-top: 10px; margin-bottom: 5px; margin-right: 10px; border-radius: 20px; background-color:#232D3B;">
-                <div style="padding-left: 15px; padding-top: 10px; padding-right: 10px"><pre>{{ current_challenge.description | markdownify }}</pre></div>
+                <div style="padding-left: 15px; padding-top: 10px; padding-right: 10px">{{ current_challenge.description | safe_markdown }}</div>
             </div>
 
             <br>
@@ -105,4 +109,5 @@
             {% endif %}
         {% endif %}
     </div>
+
 {% endblock %}
