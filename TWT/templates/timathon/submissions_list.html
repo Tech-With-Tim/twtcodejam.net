@@ -3,51 +3,43 @@
 {% load static %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{% static 'css/submissions_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/submissions_list.css' %}">
 {% endblock %}
 
 {% block title %}Code Jam Submission{% endblock %}
 {% block content %}
     {% include "base/navbar.html" %}
     <div class="containers">
-    {% for submission in page_obj %}
-        <br><div class="submission-view-container">
-        <h2><b>{{ submission.team.name }}</b></h2><br>
-        <p class="text-white" style="font-size: large;">{{submission.description}}</p><br>
-        <a class="btn btn-dark git-link" href="{{ submission.github_link }}" title="{{ submission.github_link }}">GitHub</a><br><br>
-        <div class="members-list">
-        {% for team_member in submission.team.discord_members %}
-            <div class="member">
-            <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}" alt="pfp">
-            <p style="font-weight: large;" class="text-white title">{{ team_member.username }}</p>
+        {% for submission in submissions %}
+            <br>
+            <div class="submission-view-container">
+                <h2><b>{{ submission.team.name }}</b></h2><br>
+                <p class="text-white" style="font-size: large;">{{ submission.description }}</p><br>
+                <a class="btn btn-dark git-link" href="{{ submission.github_link }}"
+                   title="{{ submission.github_link }}">GitHub</a><br><br>
+                <div class="members-list">
+                    {% for team_member in submission.team.discord_members %}
+                        <div class="member">
+                            <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}"
+                                 alt="pfp">
+                            <p style="font-weight: large;" class="text-white title">{{ team_member.username }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if not challenge.voting_status %}
+                    <span class="text-white">Votes: {{ submission.team.votes }}</span>
+                {% else %}
+                    {% if user not in submission.team.members.all %}
+                        {% if user not in submission.team.voted_by.all %}
+                            <a class="btn btn-dark" href="{% url "timathon:VoteTeam" submission.team.ID %}">Vote</a>
+                        {% else %}
+                            <a class="btn btn-dark" href="{% url "timathon:UnvoteTeam" submission.team.ID %}">Unvote</a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
             </div>
         {% endfor %}
-        </div>
-        <a class="btn btn-dark" href="{% url "timathon:VoteTeam" submission.team.ID%}">Vote Testing NOT FINAL</a>
-        </div>
-    {% endfor %}
     </div>
 
-    <footer>
-        {% block footer %}
-    <div class="pagination">
-    <span class="step-links text-white">
-        {% if page_obj.has_previous %}
-        <div>
-            <a href="?page=1" class="page-link">&laquo; first</a></div><div>
-        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">previous</a></div>
-        {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">last &raquo;</a>
-        {% endif %}
-    </span>
-    </div>
-        {% endblock %}
-    </footer>
 {% endblock %}

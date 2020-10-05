@@ -50,7 +50,6 @@ class Challenge(models.Model):
     submissions_status = models.BooleanField(default=False)
     team_creation_status = models.BooleanField(default=False)
     voting_status = models.BooleanField(default=False)
-    members_voted = models.ManyToManyField(User, related_name='userwhovoted')
 
     @property
     def active(self):

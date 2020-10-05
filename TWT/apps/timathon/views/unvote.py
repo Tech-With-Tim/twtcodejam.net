@@ -66,7 +66,7 @@ class UnVote(View):
                                 fields=[{"name": "Error", "value": "Challenge Voting is not open."}])
             return redirect('/')
         team.votes = team.votes - 1
-        team.voted_by.add(user)
+        team.voted_by.remove(user)
         team.save()
         messages.add_message(request,
                              messages.WARNING,

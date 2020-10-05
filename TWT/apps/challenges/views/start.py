@@ -39,7 +39,7 @@ class StartView(View):
                                  messages.INFO,
                                  'Challenge has been posted!')
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> started the codejam now you can join teams",
-                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}])
+                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}], codeJam=True)
             return redirect('timathon:Home')
 
         else:

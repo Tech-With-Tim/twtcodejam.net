@@ -7,9 +7,9 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/timathonHome.css' %}"/>
-  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-  <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -49,7 +49,9 @@
                     {% endif %}
 
                 {% endif %}
-                {% if current_challenge.voting_status %}
+                {% if not current_challenge.team_creation_status and not submissions_status and not voting_status %}
+                    <a class="btn btn-info" href="{% url "timathon:submissionList" %}">View Submissions</a>
+                {% elif current_challenge.voting_status %}
                     <a class="btn btn-info" href="{% url "timathon:submissionList" %}">View Submissions</a>
                 {% else %}
                     {% if is_staff %}
@@ -96,7 +98,7 @@
                                         </div>
                                     {% endfor %}
                                     <div class = "card-body text-info text-center">
-<!--                                         TODO pin button at bottom-->
+                                        <!--                                         TODO pin button at bottom-->
                                         <a href="{% url 'timathon:ViewTeams' team.ID %}" class="btn view-team-btn" style="color:white;">View Team</a>
                                     </div>
                                 </div>
