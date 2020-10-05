@@ -27,8 +27,8 @@
         
         <center>
         {% if user in team.members.all %}
-            <h6>Invite members in your team: <input style="width: auto; padding: 5px; margin-left: 4px; margin-right: 4px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" disabled="disabled" value="{{ invite }}">
-            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white;"  onclick="Copy();">Copy Invite</a></h6>
+            <h6>Invite members in your team: <input style="width: auto; padding: 5px; margin-left: 4px; margin-right: 4px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" readonly="readonly" value="{{ invite }}">
+            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white;"  onclick="Copy()">Copy Invite</a></h6>
         <br>
         </center>
 
@@ -60,8 +60,10 @@
     <script type="text/javascript">
         function Copy()
         {
-            invite = document.getElementById("invite").innerText;
-            navigator.clipboard.writeText(invite);
+            var invite = document.getElementById("invite");
+            invite.select();
+            invite.setSelectionRange(0, 99999);
+            document.execCommand("copy");
         }
     </script>
 {% endblock %}
