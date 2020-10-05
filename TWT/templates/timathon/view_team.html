@@ -12,13 +12,13 @@
     <div class="container">
         <center><h1 class="team-name">{{ team.name }}</h1></center>
 
-        <div class="members-container" style="padding-bottom: 10px;">
+        <div class="members-container">
 <!--            <h5>Members:</h5>-->
             {% for member in team.discord_members %}
                 <div class="members-card">
-                    <div class="team-member" style="margin-top: 8px; margin-bottom: 8px;">
-                        <img style="border-radius: 50%; width: 45px; margin-right: 5px; margin-left: 2px" src="{{ member.avatar_url }}" alt="pfp">
-                        <span>{{ member.username }}</span>
+                    <div class="team-member">
+                        <div><img class="member-pfp" src="{{ member.avatar_url }}" alt="pfp"></div>
+                        <div class="member-username>"><span>{{ member.username }}</span></div>
                     </div>
                 </div>
             {% endfor %}
@@ -27,8 +27,10 @@
         
         <center>
         {% if user in team.members.all %}
-            <h6>Invite members in your team: <input style="width: auto; padding: 5px; margin-left: 4px; margin-right: 4px; border-radius: 4px; border-color: grey; border-style: solid; border-width: 2px; color: white; font-weight: bold; background-color: transparent;" type="text" id="invite" readonly="readonly" value="{{ invite }}">
-            <a style="cursor: pointer; color:#383838; background-color: #FF7746; padding: 7px; border-radius: 4px; color: white;"  onclick="Copy()">Copy Invite</a></h6>
+            <div class="invite"><div>
+                <h6>Invite members in your team: <input class="invite-text" type="text" id="invite" readonly="readonly" value="{{ invite }}"></h6></div>
+                    <div><h6><a class="invite-button" onclick="Copy()">Copy Invite</a></h6></div>
+            </div>
         <br>
         </center>
 
