@@ -60,7 +60,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
+static_root/
 # Flask stuff:
 instance/
 .webassets-cache
