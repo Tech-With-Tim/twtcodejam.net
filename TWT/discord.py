@@ -3,7 +3,7 @@ from typing import Callable, List, Optional
 import requests
 import json
 
-from our_secrets import TOKEN, LOG_WEBHOOK, CODEJAM_WEBHOOK
+from our_secrets import TOKEN, LOG_WEBHOOK, CODEJAM_WEBHOOK, CODEJAM_INFO_CHANNEL_WEBHOOK
 from .cache import TimedCache
 
 
@@ -35,7 +35,7 @@ class Discord:
         except Exception as e:
             raise e
 
-    def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None, codeJam: bool = False) -> dict:
+    def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None, codeJam: bool = False, codeJamInfo: bool = False) -> dict:
         message = {
             'username': 'TWT Web',
             'avatar_url': 'https://images-ext-1.discordapp.net/external/FUjBZblkJRsrA_f_1VH37gLQzw_V87zLJcIxOMBn3TE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/518054642979045377/2043bb80cfba102dd2adc37f41f94f1e.png',
@@ -43,17 +43,23 @@ class Discord:
         }
 
         print(f"POST @ {retry.__name__}")
-        if not codeJam:
+        if codeJamInfo:
             try:
-                self.methods["POST"](url=LOG_WEBHOOK, json=message)
+                self.methods["POST"](url=CODEJAM_INFO_CHANNEL_WEBHOOK, json=message)
             except Exception as e:
                 raise e
-        else:
+        elif codeJam:
             try:
                 self.methods["POST"](url=CODEJAM_WEBHOOK, json=message)
             except Exception as e:
                 raise e
-    def send_webhook(self, title: str, description: str, fields=[], timestamp: bool = True, codeJam: bool = False):
+        else:
+            try:
+                self.methods["POST"](url=LOG_WEBHOOK, json=message)
+            except Exception as e:
+                raise e
+    def send_webhook(self, title: str, description: str, fields=[], timestamp: bool = True, codeJam: bool = False,
+                     codeJamInfo: bool = False):
         data = [{
             'title': title,
             'description': description,
@@ -63,7 +69,7 @@ class Discord:
         if timestamp:
             data[0]["timestamp"] = str(datetime.utcnow())
 
-        self.__post_webhook(retry=self.send_webhook, data=data, codeJam=codeJam)
+        self.__post_webhook(retry=self.send_webhook, data=data, codeJam=codeJam, codeJamInfo=codeJamInfo)
 
     def get_guild(self, guild_id: int = 501090983539245061):
         return self.__request(retry=self.get_guild, url="guilds/{}".format(guild_id))

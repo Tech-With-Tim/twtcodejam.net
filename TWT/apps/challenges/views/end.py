@@ -34,9 +34,9 @@ class EndView(View):
                                  messages.INFO,
                                  'Challenge has been closed!')
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the codejam. Thanks for participating",
-                                fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/')})"}])
-            client.send_webhook("Code Jam", f"Codejam has ended. Thanks for participating",
-                                fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/')})"}], codeJam=True)
+                                fields=[{"name": "Link", "value": f"[Visit]({request.build_absolute_uri('/')})"}])
+            client.send_webhook("Timathon", f"Timathon has ended. Thanks for participating",
+                                fields=[{"name": "Link", "value": f"[Visit]({request.build_absolute_uri('/')})"}], codeJam=True)
             return redirect('/')
 
         else:

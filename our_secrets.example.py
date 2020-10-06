@@ -23,3 +23,4 @@ ALLOWED_HOSTS = ['your-hosts']
 TOKEN: str = "your bot token."  # > https://discord.com/developers/applications
 LOG_WEBHOOK = "url"
 CODEJAM_WEBHOOK = "URL"
+CODEJAM_INFO_CHANNEL_WEBHOOK = "URL"

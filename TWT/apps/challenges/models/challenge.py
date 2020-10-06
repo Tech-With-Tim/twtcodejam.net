@@ -35,8 +35,7 @@ class Challenge(models.Model):
     short_desc = models.TextField(max_length=100,
                                   help_text="A summary of the full challenge description.")
 
-    description = MartorField(max_length=2000,
-                              help_text="A full description of the challenge.")
+    description = MartorField()
 
     rules = models.TextField(max_length=512,
                              help_text="A set of rules for this challenge.")
