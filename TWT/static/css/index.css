@@ -3,3 +3,14 @@
     padding: 5px;
     margin-bottom: 15px;
 }
+
+.discord-embed{
+    width: 350px;
+    height: 500px;
+}
+
+@media screen and (max-width: 768px){
+    .discord-embed{
+        width: 100%;
+    }
+}
