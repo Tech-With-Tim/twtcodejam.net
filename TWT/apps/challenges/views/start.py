@@ -42,13 +42,13 @@ class StartView(View):
                                 fields=[{"name": "Title", "value": challenge.title},
                                         {"name": "Description", "value": challenge.description},
                                         {"name": "Rules", "value": challenge.rules},
-                                        {"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}],
+                                        {"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> started the codejam now you can join teams",
                                 fields=[{"name": "Title", "value": challenge.title},
                                         {"name": "Description", "value": challenge.description},
                                         {"name": "Rules", "value": challenge.rules},
-                                        {"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}])
+                                        {"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}])
             return redirect('timathon:Home')
 
         else:

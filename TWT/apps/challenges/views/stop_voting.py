@@ -30,8 +30,8 @@ class StopVoting(View):
                                  messages.INFO,
                                  'Voting Has Ended')
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the voting for the code jam",
-                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}],
+                                fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the voting for the code jam",
-                                fields=[{"name": "Link", "value": f"{request.build_absolute_uri('/timathon/')}"}])
+                                fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}])
             return redirect('timathon:Home')
