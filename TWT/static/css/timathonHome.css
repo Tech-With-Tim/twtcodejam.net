@@ -51,6 +51,10 @@ hr{
     background-color: #e35522;
 }
 
+.teams > div{
+    max-width: 16rem;
+}
+
 @media screen and (max-width: 768px){
     .buttons-grid{
         display: flex;
