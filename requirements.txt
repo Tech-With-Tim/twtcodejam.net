@@ -1,5 +1,7 @@
-django-allauth
-psycopg2
-django
 django-markdownify
+django-allauth
+django
 martor
+
+psycopg2; platform_system == "Windows"
+psycopg2-binary; sys_platform == "linux"
