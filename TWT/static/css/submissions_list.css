@@ -7,12 +7,6 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .git-link {width: 20%;}
-  .submission-view-container {width: 30%;}
-}
-
 .git-link{
     font-weight: bold;
     background-color: #FF7746;
@@ -88,4 +82,10 @@
     flex-direction: row;
     width:auto;
     height:auto;
+}
+
+@media screen and (min-width: 768px) {
+  /* For desktop: */
+  .git-link {width: 20%;}
+  .submission-view-container {width: 30%;}
 }

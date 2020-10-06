@@ -29,7 +29,7 @@
                     {{ current_challenge.status.capitalize }}
                 </div>
             </div>
-            <div class="buttons-grid" style="margin-right: 5px; margin-left: 5px; height: fit-content">
+            <div class="buttons-grid" style="margin-right: 5px; margin-left: 5px; height: fit-content;{% if not current_challenge.team_creation_status %}grid-template-columns: repeat(5, auto);{% endif %}">
                 {% if is_challenge_host %}
                     <a class="btn btn-danger float-right" href="{% url 'home:end' current_challenge.id %}">End</a>
                     {% if current_challenge.team_creation_status %}

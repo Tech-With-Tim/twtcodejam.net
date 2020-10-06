@@ -21,7 +21,49 @@
     {% endif %}
 
 
-    <div style="margin: 30px 5% 5%">
+    <div style="margin: 30px 5% 5%; color: white">
+        {# Display leaderboard #}
+        {% if ended_codejam %}
+            <div class="row text-center winners">
+                {% for team in winners %}
+                    <div style="flex: 1">
+                        <h2><b>{{ team.name }}</b></h2><br>
+                        <p class="text-white" style="font-size: large;">{{ team.submission.description }}</p><br>
+                        <a class="btn btn-dark git-link" href="{{ team.submission.github_link }}"
+                        title="{{ submission.github_link }}">GitHub</a><br><br>
+                        <div class="members-list">
+                        {% for team_member in team.discord_members %}
+                            <div class="member">
+                                <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}"
+                                     alt="pfp">
+                                <p style="font-weight: bold;" class="text-white title">{{ team_member.username }}</p>
+                            </div>
+                            <div class="member">
+                                <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}"
+                                     alt="pfp">
+                                <p style="font-weight: bold;" class="text-white title">{{ team_member.username }}</p>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+
+
+{#                </div>#}
+{#                    <div class="winner-team-position">{# position of team #}
+{#                        {{ team.winner }}#}
+{#                    </div>#}
+{#                    <div class="winner-team-members">#}
+{#                        {% for member in team.discord_members %}#}
+{#                            <img src="{{ member.avatar_url }}">#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                    <div>{{ team.name }}</div>#}
+{#                    <div>{{ team.submission.github_link }}</div>#}
+{#                    <div>{{ team.submission.description }}</div>#}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <br>
         <div class="row">
             <div style="margin: 0 auto">
                 <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
@@ -164,25 +206,4 @@
     {#            {% endif %}#}
     {#        </div>#}
     {#    {% endif %}#}
-
-     {# Display leaderboard #}
-    {% if ended_codejam %}
-
-        <div class="submission-view-container">
-            <h1>Latest Timathon Winners</h1>
-            {% for team in winners %}
-            <div class="rank"> <h1 style="padding:10px;">{{ team.winner }}. {{ team.name }}</h1>
-                </div>
-                <div class="name">
-                    {% for member in team.discord_members %}
-                        <img src="{{ member.avatar_url }}">{{ member.username }}
-                    {% endfor %}
-                                    <p class="text-white" style="font-size: large;">{{ team.submission.description }}</p>
-
-                </div>
-                <button class="btn btn-dark git-link"><a class="score" href="{{ team.submission.github_link }}">GitHub</a></button>
-
-            {% endfor %}
-        </div>
-    {% endif %}
 {% endblock %}

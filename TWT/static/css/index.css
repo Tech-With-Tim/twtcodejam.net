@@ -9,36 +9,43 @@
     height: 500px;
 }
 
-@media screen and (max-width: 768px){
-    .discord-embed{
-        width: 100%;
-    }
+.git-link{
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #FF7746;
 }
 
-
-
-	img{
-	max-width:35%;
-	margin:10px;
-	border-radius:60px;}
-
-	.description{
-	color:white;
-	}
-
-	.submission-view-container {
-    color:#F9F9FA;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding:15px;
-    transition: 0.3s;
-    height: 100%;
-    border-radius: 20px;
-    background-color:#232D3B;
-    text-align: center;
+.git-link:hover {
+    background-color: #dd673b;
 }
 
+.members-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:auto;
+    height:auto;
+}
 
-.rank{
+.member{
+    width: 45px;
+    margin: 5px;
+}
+
+.winners{
+    background-color: #232D3B;
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px 7px #0000002A;
+}
+
+.title{
+    opacity: 0;
+    transition: .2s ease;
+}
+
+.member:hover .title {
+    transition: .2s ease;
+    opacity:1;
 }
