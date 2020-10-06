@@ -20,25 +20,7 @@
         </p>
     {% endif %}
 
-    {# Display leaderboard #}
-    {% if ended_codejam %}
-        <div class="text-white">
-            {% for team in winners %}
-                <div>{# position of team #}
-                    {{ team.winner }}
-                </div>
-                <div>
-                    {% for member in team.discord_members %}
-                        <img src="{{ member.avatar_url }}">
-                    {% endfor %}
-                </div>
-                <div>{{ team.name }}</div>
-                <div>{{ team.submission.github_link }}</div>
-                <div>{{ team.submission.description }}</div>
 
-            {% endfor %}
-        </div>
-    {% endif %}
     <div style="margin: 30px 5% 5%">
         <div class="row">
             <div style="margin: 0 auto">
@@ -182,4 +164,25 @@
     {#            {% endif %}#}
     {#        </div>#}
     {#    {% endif %}#}
+
+     {# Display leaderboard #}
+    {% if ended_codejam %}
+
+        <div class="submission-view-container">
+            <h1>Latest Timathon Winners</h1>
+            {% for team in winners %}
+            <div class="rank"> <h1 style="padding:10px;">{{ team.winner }}. {{ team.name }}</h1>
+                </div>
+                <div class="name">
+                    {% for member in team.discord_members %}
+                        <img src="{{ member.avatar_url }}">{{ member.username }}
+                    {% endfor %}
+                                    <p class="text-white" style="font-size: large;">{{ team.submission.description }}</p>
+
+                </div>
+                <button class="btn btn-dark git-link"><a class="score" href="{{ team.submission.github_link }}">GitHub</a></button>
+
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

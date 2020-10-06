@@ -14,3 +14,31 @@
         width: 100%;
     }
 }
+
+
+
+	img{
+	max-width:35%;
+	margin:10px;
+	border-radius:60px;}
+
+	.description{
+	color:white;
+	}
+
+	.submission-view-container {
+    color:#F9F9FA;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding:15px;
+    transition: 0.3s;
+    height: 100%;
+    border-radius: 20px;
+    background-color:#232D3B;
+    text-align: center;
+}
+
+
+.rank{
+}
