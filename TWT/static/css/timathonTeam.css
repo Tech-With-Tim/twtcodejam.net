@@ -70,6 +70,16 @@ padding: 10px;
     margin-left: 2px
 }
 
+.invite{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:auto;
+    height:auto;
+}
+
 .invite-text {
     width: auto;
     padding: 5px;
@@ -111,11 +121,7 @@ padding: 10px;
         width: 100%;
     }
     .invite {
-        display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        width:auto;
-        height:auto;
     }
     .container {
     width: 100%;
