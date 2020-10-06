@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.views import View
+from django.template import RequestContext
 
 from TWT.context import get_discord_context
 from ..models import Challenge

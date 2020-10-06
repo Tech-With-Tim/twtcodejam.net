@@ -1,5 +1,4 @@
 """sylte_xyz URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -26,7 +25,6 @@ urlpatterns = [
     path('timathon/', include('TWT.apps.timathon.urls', namespace="timathon")),
     path('martor/', include('martor.urls')),
 ]
-
 
 # For discord login.
 

@@ -65,23 +65,23 @@ class Discord:
 
         self.__post_webhook(retry=self.send_webhook, data=data, codeJam=codeJam)
 
-    def get_guild(self, guild_id: int = 501090983539245061):
+    def get_guild(self, guild_id: int = 759043212680757248):
         return self.__request(retry=self.get_guild, url="guilds/{}".format(guild_id))
 
-    def get_member(self, member_id: int, guild_id: int = 501090983539245061):
+    def get_member(self, member_id: int, guild_id: int = 759043212680757248):
         return self.__request(retry=self.get_member, url="guilds/{g}/members/{m}".format(g=guild_id, m=member_id))
 
-    def get_roles(self, guild_id: int = 501090983539245061):
+    def get_roles(self, guild_id: int = 759043212680757248):
         return self.__request(retry=self.get_roles, url="guilds/{}/roles".format(guild_id))
 
-
 client = Discord(token=TOKEN)
-HELPER_ID: int = 541272748161499147
-MOD_ID: int = 511332506780434438
-ADMIN_ID: int = 580911082290282506
+HELPER_ID: int = 759043212995723274
+MOD_ID: int = 759043212995723276
+ADMIN_ID: int = 759043212995723277
 TIM_ID: int = 511334601977888798
-CHALLENGE_HOST: int = 713170076148433017
-VERIFIED_ID: int = 612391389086351363
+CHALLENGE_HOST: int = 759043212995723275
+VERIFIED_ID: int = 759043212680757252
+
 
 ALL_ROLES = {
     "TIM": TIM_ID,
