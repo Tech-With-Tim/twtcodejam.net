@@ -23,8 +23,20 @@ class AddMember(View):
             return redirect('/')
         user = request.user
         discord_user = context['discord_user']
-        team = get_object_or_404(Team, invite=invite)# Team.objects.get(invite=invite)
-        challenge = get_object_or_404(Challenge, ended=False, posted=True, type='MO')#Challenge.objects.get(ended=False, posted=True, type='MO')
+        try:
+            team = Team.objects.get(invite=invite)
+        except Team.DoesNotExist:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 "Team does not exist")
+            return redirect('/')
+        try:
+            challenge = Challenge.objects.get(ended=False, posted=True, type='MO')
+        except Challenge.DoesNotExist:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 "Challenge does not exist")
+            return redirect('/')
         user_teams = Team.objects.filter(challenge=challenge, members=user)
         if len(user_teams) != 0:
             messages.add_message(request,
