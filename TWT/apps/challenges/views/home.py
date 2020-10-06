@@ -2,7 +2,10 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-
+from TWT.apps.timathon.models.team import Team
+from TWT.apps.timathon.models.submission import Submission
+from random import randint
+from allauth.socialaccount.models import SocialAccount
 from TWT.context import get_discord_context
 from ..models import Challenge
 from django.contrib import messages
@@ -37,6 +40,43 @@ class HomeView(View):
         print(context["challenges"])
         if context["challenges"]:
             print(True)
+        try:
+            ended_challenges = list(Challenge.objects.filter(ended=True).order_by('-id'))
+            ended_challenge = ended_challenges[0]
+            ended_winner_1 = Team.objects.get(challenge=ended_challenge, winner=1)
+            ended_winner_2 = Team.objects.get(challenge=ended_challenge, winner=2)
+            ended_winner_3 = Team.objects.get(challenge=ended_challenge, winner=3)
+            winners_old_list = [ended_winner_1, ended_winner_2, ended_winner_3]
+            winners = []
+            for team in winners_old_list:
+                members = team.members.all()
+                discord_members = []
+                for member in members:
+                    new_member = {}
+                    if member.id == request.user.id:
+                        is_in_team = True
+                    try:
+                        user = SocialAccount.objects.get(user_id=member.id)
+                    except SocialAccount.DoesNotExist:
+                        pass
+                    else:
+                        new_member["user_id"] = user.uid
+                        avatar_url = user.get_avatar_url()
+                        if avatar_url.endswith("None.png"):
+                            random = randint(0, 4)
+                            avatar_url = f'https://cdn.discordapp.com/embed/avatars/{random}.png'
+                        new_member["avatar_url"] = avatar_url
+                        new_member["username"] = user.extra_data["username"]
+                        new_member["discriminator"] = user.extra_data["discriminator"]
+                    discord_members.append(new_member)
+                team.discord_members = discord_members
+                team.submission = Submission.objects.get(team=team)
+                winners.append(team)
+                context["winners"] = winners
+                context["ended_codejam"] = True
+        except:
+            context["ended_codejam"] = False
+            print(context)
         if not context["is_verified"]:
             messages.add_message(request,
                                  messages.WARNING,

@@ -29,7 +29,7 @@ class StartSubmission(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Submissions have been started')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has started the submissions",
+            client.send_webhook("Code Jam", f"Submissions have started",
                                 fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has started the submissions",

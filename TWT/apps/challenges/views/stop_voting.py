@@ -29,7 +29,7 @@ class StopVoting(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Voting Has Ended')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the voting for the code jam",
+            client.send_webhook("Code Jam", f"Voting period for the code jam has ended",
                                 fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has ended the voting for the code jam",

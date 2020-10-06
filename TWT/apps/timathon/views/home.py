@@ -31,7 +31,11 @@ class HomeView(View):
         context['current_challenge'] = context['current_challenge'][0] or None
         """
         if context['current_challenge']:
-            old_teams = Team.objects.filter(challenge=context['current_challenge'])
+            old_teams = list(Team.objects.filter(challenge=context['current_challenge']))
+            user_teams = list(Team.objects.filter(challenge=context['current_challenge'], members=request.user))
+            if not len(user_teams) == 0:
+                old_teams.remove(user_teams[0])
+                old_teams.insert(0, user_teams[0])
             teams = []
             is_in_team = False
             for team in old_teams:

@@ -9,23 +9,40 @@
 
 {% block content %}
     {% include "base/navbar.html" %}
-        {% if is_staff %}
-            <p class="text-center text-white" style="margin-top: 25px">Hey {{ username }}, you have permission to create new challenges!
-                <br>
-                <a href="{% url 'home:new' %}">
-                    <button class="btn btn-success" style="margin-top: 10px">
-                        New
-                    </button>
-                </a>
-            </p>
-        {% endif %}
+    {% if is_staff %}
+        <p class="text-center text-white" style="margin-top: 25px">Hey {{ username }}, you have permission to create new challenges!
+            <br>
+            <a href="{% url 'home:new' %}">
+                <button class="btn btn-success" style="margin-top: 10px">
+                    New
+                </button>
+            </a>
+        </p>
+    {% endif %}
 
-        {# Display all challenges. #}
+    {# Display leaderboard #}
+    {% if ended_codejam %}
+        <div class="text-white">
+            {% for team in winners %}
+                <div>{# position of team #}
+                    {{ team.winner }}
+                </div>
+                <div>
+                    {% for member in team.discord_members %}
+                        <img src="{{ member.avatar_url }}">
+                    {% endfor %}
+                </div>
+                <div>{{ team.name }}</div>
+                <div>{{ team.submission.github_link }}</div>
+                <div>{{ team.submission.description }}</div>
 
-        <div style="margin: 30px 5% 5%">
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div style="margin: 30px 5% 5%">
         <div class="row">
             <div style="margin: 0 auto">
-              <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
             <div style="flex: 1; margin-left: 25px; margin-right: 25px; margin-top: 15px">
                 <h4 class="text-white">Timathon - Code Jam</h4>
@@ -44,7 +61,7 @@
             </div>
         </div>
 
-        </div>
+    </div>
 
 
     {#    {% if challenges %}#}

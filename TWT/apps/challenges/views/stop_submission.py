@@ -29,8 +29,8 @@ class StopSubmission(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Submissions Have been stopped')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has stopped accepting submissions for the code jam",
-                                fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
+            client.send_webhook("Code Jam", f"Submissions for the code jam have been stopped",
+                                fields=[{"name": "Link", "value": f"[Visit]({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has stopped accepting submissions for the code jam",
                                 fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}])

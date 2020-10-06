@@ -38,7 +38,7 @@ class StartView(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Challenge has been posted!')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> started the codejam now you can join teams",
+            client.send_webhook("Code Jam", f"CodeJam has started now you can join teams",
                                 fields=[{"name": "Title", "value": challenge.title},
                                         {"name": "Description", "value": challenge.description},
                                         {"name": "Rules", "value": challenge.rules},

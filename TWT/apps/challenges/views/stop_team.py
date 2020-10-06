@@ -29,7 +29,7 @@ class StopTeams(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Team Creation Has been stopped')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has stopped the team creation process",
+            client.send_webhook("Code Jam", f"Team creation process has been stopped",
                                 fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has stopped the team creation process",

@@ -29,7 +29,7 @@ class StartVoting(View):
             messages.add_message(request,
                                  messages.INFO,
                                  'Voting has been started Go vote now for your favourite projects')
-            client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has started the Voting period",
+            client.send_webhook("Code Jam", f"Voting period has been started",
                                 fields=[{"name": "Link", "value": f"['Visit']({request.build_absolute_uri('/timathon/')})"}],
                                 codeJam=True)
             client.send_webhook("Code Jam", f"<@{context['discord_user'].uid}> has started the Voting period",
