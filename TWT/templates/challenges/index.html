@@ -23,7 +23,29 @@
 
     <div style="margin: 30px 5% 5%; color: white">
         {# Display leaderboard #}
-        {% if ended_codejam %}
+
+        <div class="row">
+            <div style="margin: 0 auto">
+                <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
+            <div style="flex: 1; margin-left: 25px; margin-right: 25px; margin-top: 15px">
+                <h4 class="text-white">Timathon - Code Jam</h4>
+                <p class="text-white">We will be hosting a code jam every 2 months, each consisting of a different theme and allowing yourself to put your skills to the test. In comparison to other code jams available, you can request for your own teammates and team sizes. Meaning, if you prefer to go solo, you're still welcome to participate.</p>
+                <h5 class="text-white">Prizes:</h5>
+                <p class="text-white">For our code jams, you're in for a chance to win <b>real cash prizes</b>. <br> (CAD) <b>$150</b>, <b>$100</b> and <b>$50</b> will be split amongst the winning teams.</p>
+                <h5 class="text-white">Voting:</h5>
+                <h6 class="text-white">The community will have a chance to vote on their favorite submission. The top 10 voted will be reviewed, and the winners will be chosen by Tim.</h6>
+                <br>
+                <div style="margin-top: 10px">
+                    <h4 class="text-white">Weekly Challenges</h4>
+                    <p class="text-white">To sign up for the our weekly coding challenges, please go to <a style="color: #007bff" href="https://discord.com/channels/501090983539245061/680851838857117770">#challenge</a>. Read up on the challenge and if you would like to participate all you'll need to do is react to the message.</p>
+                    <br>
+                    <p class="text-white">Challenges are posted every Monday and If you would like to get pinged for new challenges; react to <a href="https://discordapp.com/channels/501090983539245061/511344731608055818/715232946981961778">this message</a></p>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% if ended_codejam %}
             <div class="row text-center winners">
                 {% for team in winners %}
                     <div style="flex: 1">
@@ -64,26 +86,6 @@
             </div>
         {% endif %}
         <br>
-        <div class="row">
-            <div style="margin: 0 auto">
-                <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-            </div>
-            <div style="flex: 1; margin-left: 25px; margin-right: 25px; margin-top: 15px">
-                <h4 class="text-white">Timathon - Code Jam</h4>
-                <p class="text-white">We will be hosting a code jam every 2 months, each consisting of a different theme and allowing yourself to put your skills to the test. In comparison to other code jams available, you can request for your own teammates and team sizes. Meaning, if you prefer to go solo, you're still welcome to participate.</p>
-                <h5 class="text-white">Prizes:</h5>
-                <p class="text-white">For our code jams, you're in for a chance to win <b>real cash prizes</b>. <br> (CAD) <b>$150</b>, <b>$100</b> and <b>$50</b> will be split amongst the winning teams.</p>
-                <h5 class="text-white">Voting:</h5>
-                <h6 class="text-white">The community will have a chance to vote on their favorite submission. The top 10 voted will be reviewed, and the winners will be chosen by Tim.</h6>
-                <br>
-                <div style="margin-top: 10px">
-                    <h4 class="text-white">Weekly Challenges</h4>
-                    <p class="text-white">To sign up for the our weekly coding challenges, please go to <a style="color: #007bff" href="https://discord.com/channels/501090983539245061/680851838857117770">#challenge</a>. Read up on the challenge and if you would like to participate all you'll need to do is react to the message.</p>
-                    <br>
-                    <p class="text-white">Challenges are posted every Monday and If you would like to get pinged for new challenges; react to <a href="https://discordapp.com/channels/501090983539245061/511344731608055818/715232946981961778">this message</a></p>
-                </div>
-            </div>
-        </div>
 
     </div>
 
