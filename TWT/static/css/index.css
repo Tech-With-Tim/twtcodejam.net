@@ -29,7 +29,12 @@
 }
 
 .member{
-    width: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:auto;
+    height:auto;
+    /*width: 45px;*/
     margin: 5px;
 }
 
@@ -38,6 +43,7 @@
     padding: 15px;
     border-radius: 25px;
     box-shadow: 2px 2px 5px 7px #0000002A;
+    text-align: center;
 }
 
 .title{
@@ -48,4 +54,19 @@
 .member:hover .title {
     transition: .2s ease;
     opacity:1;
+}
+
+.team {
+    flex: 1;
+}
+
+@media screen and (max-width: 768px){
+    .winners{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .discord-embed{
+        width: 100%;
+    }
 }

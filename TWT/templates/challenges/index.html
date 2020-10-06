@@ -50,7 +50,7 @@
         <br>
             <div class="row text-center winners">
                 {% for team in winners %}
-                    <div style="flex: 1">
+                    <div class="team">
                         <h2><b>{{ team.name }}</b></h2><br>
                         <p class="text-white" style="font-size: large;">{{ team.submission.description }}</p><br>
                         <a class="btn btn-dark git-link" href="{{ team.submission.github_link }}"
@@ -58,9 +58,9 @@
                         <div class="members-list">
                         {% for team_member in team.discord_members %}
                             <div class="member">
-                                <img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}"
-                                     alt="pfp">
-                                <p style="font-weight: bold;" class="text-white title">{{ team_member.username }}</p>
+                                <div><img style="border-radius: 50%; width: 45px;" class="pfp" src="{{ team_member.avatar_url }}"
+                                          alt="pfp"></div>
+                                <div><p style="font-weight: bold;" class="text-white title">{{ team_member.username }}</p></div>
                             </div>
                         {% endfor %}
                         </div>
