@@ -8,7 +8,7 @@ from random import randint
 from TWT.apps.timathon.models import Team
 from TWT.context import get_discord_context
 from TWT.apps.challenges.models.challenge import Challenge
-
+from django.core.paginator import Paginator
 
 class HomeView(View):
     def get_context(self, request: WSGIRequest):
@@ -64,6 +64,11 @@ class HomeView(View):
 
             context['in_team'] = is_in_team
             context['teams'] = teams
+            paginator = Paginator(context["teams"], 24)
+
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            context["page_obj"] = page_obj
 
         return context
 
@@ -74,5 +79,4 @@ class HomeView(View):
             return redirect('/')
         if not context["is_verified"]:
             return redirect('/')
-
         return render(request, template_name='timathon/index.html', context=context)
