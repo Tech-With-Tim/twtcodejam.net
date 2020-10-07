@@ -55,6 +55,27 @@ hr{
     max-width: 16rem;
 }
 
+.pagination-local {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.pagination-element{
+    color: white;
+    background-color: #383838;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.pagination-element:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #4a4a4a;
+}
+
 @media screen and (max-width: 768px){
     .buttons-grid{
         display: flex;
