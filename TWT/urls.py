@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from allauth.socialaccount import providers
+from TWT.views import handler404, handler500
+
+handler404 = handler404
+handler500 = handler500
 
 urlpatterns = [
     path('', include('TWT.apps.challenges.urls', namespace='home')),
