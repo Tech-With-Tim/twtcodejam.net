@@ -6,6 +6,8 @@ from django.views import View
 from ..models import Challenge
 from TWT.context import get_discord_context
 from TWT.discord import client
+from TWT.apps.timathon.models.team import Team
+
 
 class EndView(View):
     """View for ending a challenge"""
@@ -25,6 +27,13 @@ class EndView(View):
             return redirect('/')
         if context["is_admin"] or context["is_challenge_host"]:
             challenge = get_object_or_404(Challenge, id=challenge_id) # Challenge.objects.get(id=challenge_id)
+            try:
+                winners = [Team.objects.get(challenge=challenge,winner=i) for i in range(1,4)]
+            except Team.DoesNotExist:
+                messages.add_message(request,
+                                     messages.WARNING,
+                                     'Declare the winning team first')
+                return redirect('timathon:Home')
             challenge.ended = True
             challenge.status = "ENDED"
             challenge.team_creation_status = False

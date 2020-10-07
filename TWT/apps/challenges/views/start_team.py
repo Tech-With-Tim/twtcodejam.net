@@ -24,6 +24,11 @@ class StartTeams(View):
             return redirect('/')
         if context["is_admin"] or context["is_challenge_host"]:
             challenge = get_object_or_404(Challenge, id=challenge_id)# Challenge.objects.get(id=challenge_id)
+            if challenge.submissions_status or challenge.voting_status:
+                messages.add_message(request,
+                                     messages.WARNING,
+                                     'Stop Submission or voting first')
+                return redirect('timathon:Home')
             challenge.team_creation_status = True
             challenge.save()
             messages.add_message(request,
