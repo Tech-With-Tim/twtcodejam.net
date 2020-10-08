@@ -58,7 +58,7 @@ hr{
 .pagination-local {
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     padding: 4px;
     border-radius: 3px;
 }
@@ -77,6 +77,14 @@ hr{
 }
 
 @media screen and (max-width: 768px){
+    .pagination-element{
+        padding: 12px;
+    }
+
+    .pagination-number{
+        padding: 5px;
+    }
+
     .buttons-grid{
         display: flex;
         flex-direction: column;
