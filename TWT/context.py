@@ -1,6 +1,6 @@
 from allauth.socialaccount.models import SocialAccount
 from django.core.handlers.wsgi import WSGIRequest
-
+from TWT.apps.challenges.models.custom_pages import CustomPage
 from TWT import discord
 from random import randint
 
@@ -44,6 +44,8 @@ def get_discord_context(request: WSGIRequest) -> dict:
             context["is_staff"] = False
 
     finally:
+        context["custom_pages"] = list(CustomPage.objects.all())
+        print(context['custom_pages'])
         try:
             is_verified = context["is_verified"]
         except KeyError:

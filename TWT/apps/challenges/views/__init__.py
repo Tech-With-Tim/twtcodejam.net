@@ -13,6 +13,7 @@ from .unreleased import UnreleasedView
 from .delete_challenge import DeleteView
 from .start_voting import StartVoting
 from .stop_voting import StopVoting
+from .custom_page_view import CustomView
 start = StartView.as_view()
 end = EndView.as_view()
 test = TestView.as_view()
@@ -27,3 +28,4 @@ unreleased_view = UnreleasedView.as_view()
 delete_view = DeleteView.as_view()
 start_voting = StartVoting.as_view()
 stop_voting = StopVoting.as_view()
+view_custom = CustomView.as_view()

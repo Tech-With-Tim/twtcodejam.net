@@ -17,5 +17,6 @@ urlpatterns = [
     path('unreleased/', views.unreleased_view, name="unreleased"),
     path('startvoting/<int:challenge_id>', views.start_voting, name="StartVoting"),
     path('stopvoting/<int:challenge_id>', views.stop_voting, name="StopVoting"),
+    path('pages/<str:link_name>', views.view_custom, name="custom view")
 
 ]
