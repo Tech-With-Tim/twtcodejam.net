@@ -30,6 +30,11 @@
                     {{ current_challenge.status.capitalize }}
                 </div>
             </div>
+             <h5>Number of teams registered for the Timathon.</h5>
+            <div class="card text-white mb-3"
+                 style="margin-top: 10px; margin-bottom: 5px; margin-right: 10px; border-radius: 20px; background-color:#232D3B;">
+                <div style="padding-left: 15px; padding-top: 10px; padding-right: 10px">{{ teams_registered }}</div>
+            </div>
             <div class="buttons-grid"
                  style="margin-right: 5px; margin-left: 5px; height: fit-content;{% if not current_challenge.team_creation_status %}grid-template-columns: repeat(5, auto);{% endif %}">
                 {% if is_challenge_host %}
