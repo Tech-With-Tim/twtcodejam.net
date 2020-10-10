@@ -19,6 +19,12 @@
     background-color: #dd673b;
 }
 
+.info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .members-list {
     display: flex;
     justify-content: center;
@@ -43,6 +49,9 @@
     border-radius: 25px;
     box-shadow: 2px 2px 5px 7px #0000002A;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    margin: 0 5% !important;
 }
 
 .title{
@@ -63,6 +72,13 @@
     .winners{
         display: flex;
         flex-direction: column;
+        margin: 0 5%;
+    }
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     .discord-embed{

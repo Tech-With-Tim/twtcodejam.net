@@ -7,14 +7,22 @@
      <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
     <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
     <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
-
+    <style>
+        .main-container{
+            margin: 5%;
+        }
+        .main-container > h3{
+            margin: 0 0 15px 15px;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     {% include "base/navbar.html" %}
-    <h3 class="text-white">{{ page.title }}</h3>
-    <div class="card text-white mb-3"
-                 style="margin-top: 10px; margin-bottom: 5px; margin-right: 10px; border-radius: 20px; background-color:#232D3B;">
+    <div class="main-container">
+        <h3 class="text-white">{{ page.title }}</h3>
+        <div class="card text-white mb-3" style="margin-top: 10px; margin-bottom: 5px; margin-right: 10px; border-radius: 20px; background-color:#232D3B;">
                 <div style="padding-left: 15px; padding-top: 10px; padding-right: 10px">{{ page.content | safe_markdown }}</div>
+        </div>
     </div>
 {% endblock %}

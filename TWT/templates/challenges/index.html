@@ -24,7 +24,7 @@
     <div style="margin: 30px 5% 5%; color: white">
         {# Display leaderboard #}
 
-        <div class="row">
+        <div class="info">
             <div style="margin: 0 auto">
                 <iframe class="discord-embed" src="https://ptb.discordapp.com/widget?id=501090983539245061&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
@@ -48,7 +48,7 @@
     {% if ended_codejam %}
             <h1 class="text-center">Latest Timathon winners</h1>
         <br>
-            <div class="row text-center winners">
+            <div class="winners">
                 {% for team in winners %}
                     <div class="team">
                         <h2><b>{{ team.name }}</b></h2><br>

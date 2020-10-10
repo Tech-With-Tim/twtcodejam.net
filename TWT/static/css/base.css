@@ -6,10 +6,11 @@ body {
 }
 ::-webkit-scrollbar-track {
   background: #555;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: #bbb;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ccc;

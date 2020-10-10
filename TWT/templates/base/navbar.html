@@ -21,6 +21,11 @@
     .dropdown-item:hover {
         background-color: #384757;
         color: white;
+        transition: all 0.2s ease;
+    }
+
+    .nav-link{
+        transition: all 0.2s ease;
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #232D3B;">
@@ -62,7 +67,13 @@
             {# <li class="nav-item">#}
              {#<a class="nav-link" href="#">Weekly Challenges</a>#}
             {#</li>#}
-            <li class="nav-item dropdown" style="position: absolute; right: 200px">
+            <li class="nav-item">
+                {% if is_staff %}
+                    <a class="nav-link" href="{% url 'home:unreleased' %}">Unreleased</a>
+                {% endif %}
+
+            </li>
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     More
@@ -84,12 +95,6 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                {% if is_staff %}
-                    <a class="nav-link" href="{% url 'home:unreleased' %}">Unreleased</a>
-                {% endif %}
-
-            </li>
             {% if user.is_authenticated %}
                 <li class="nav-item" style="position: absolute; right: 25px">
                     <a href="{% url 'home:logout' %}">
