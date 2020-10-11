@@ -63,6 +63,19 @@ hr{
     border-radius: 3px;
 }
 
+.pagination-number{
+    text-decoration: none;
+    color: grey;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #383838;
+}
+
+.pagination-number:hover{
+    text-decoration: none;
+    color: grey;
+}
+
 .pagination-element{
     color: white;
     background-color: #383838;
@@ -77,12 +90,23 @@ hr{
 }
 
 @media screen and (max-width: 768px){
+    .mobileHidden {
+        display: none;
+    }
+
     .pagination-element{
         padding: 12px;
     }
 
     .pagination-number{
-        padding: 5px;
+        color: white;
+        padding: 12px;
+        background-color: #383838;
+    }
+
+    .pagination-number:hover{
+        color: white;
+        background-color: #4a4a4a;
     }
 
     .buttons-grid{
