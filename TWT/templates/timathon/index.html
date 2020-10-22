@@ -96,6 +96,7 @@
 
             <div class="row" style="margin: 0">
                 <h4 style="flex: 1">Teams</h4>
+                <h5 style="text-align: end; margin-right: 10px;">{{ teams_registered }}</h5>
                 <form action="{% url 'timathon:Create_Team' %}">
                     {% if in_team == False and current_challenge.team_creation_status %}
                         <button type="submit" class="btn btn-success" style="color: white">Create a team
