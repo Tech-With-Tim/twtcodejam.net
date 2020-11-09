@@ -23,5 +23,6 @@ ALLOWED_HOSTS = ['your-hosts']
 TOKEN: str = "your bot token."  # > https://discord.com/developers/applications
 LOG_WEBHOOK = "url"
 dsn = "dsn"  # for sentry integration not compulsory if not then comment lines 194-202 in settings.py
-CODEJAM_WEBHOOK = "URL"
+CODEJAM_WEBHOOK = "URL"  # to recieve codejam notifications set this up for a channel in your discord server and
+# paste the link
 CODEJAM_INFO_CHANNEL_WEBHOOK = "URL"
