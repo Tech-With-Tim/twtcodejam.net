@@ -1,3 +1,6 @@
+"""
+This file is used to get information from the discord api.
+"""
 from datetime import datetime
 from typing import Callable, List, Optional
 import requests
@@ -35,7 +38,8 @@ class Discord:
         except Exception as e:
             raise e
 
-    def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None, codeJam: bool = False, codeJamInfo: bool = False) -> dict:
+    def __post_webhook(self, retry: Callable[[int], object], data: List[dict] = None, codeJam: bool = False,
+                       codeJamInfo: bool = False) -> dict:
         message = {
             'username': 'TWT Web',
             'avatar_url': 'https://images-ext-1.discordapp.net/external/FUjBZblkJRsrA_f_1VH37gLQzw_V87zLJcIxOMBn3TE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/518054642979045377/2043bb80cfba102dd2adc37f41f94f1e.png',
@@ -58,6 +62,7 @@ class Discord:
                 self.methods["POST"](url=LOG_WEBHOOK, json=message)
             except Exception as e:
                 raise e
+
     def send_webhook(self, title: str, description: str, fields=[], timestamp: bool = True, codeJam: bool = False,
                      codeJamInfo: bool = False):
         data = [{

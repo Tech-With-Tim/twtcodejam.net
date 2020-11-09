@@ -1,3 +1,6 @@
+"""
+This file has to be called in every view as context as this loads user details and the user pfp
+"""
 from allauth.socialaccount.models import SocialAccount
 from django.core.handlers.wsgi import WSGIRequest
 from TWT.apps.challenges.models.custom_pages import CustomPage

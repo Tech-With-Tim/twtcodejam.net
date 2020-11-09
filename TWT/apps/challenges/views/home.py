@@ -10,6 +10,7 @@ from TWT.context import get_discord_context
 from ..models import Challenge
 from django.contrib import messages
 
+
 class HomeView(View):
     """The main landing page for challenges."""
 

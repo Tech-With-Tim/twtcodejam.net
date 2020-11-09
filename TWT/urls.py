@@ -23,11 +23,18 @@ from TWT.views import handler404, handler500
 handler404 = handler404
 handler500 = handler500
 
+# def trigger_error(request):
+#   division_by_zero = 1 / 0
+
+
 urlpatterns = [
     path('', include('TWT.apps.challenges.urls', namespace='home')),
     path('admin/', admin.site.urls),
     path('timathon/', include('TWT.apps.timathon.urls', namespace="timathon")),
+    # path('weekly/', include('TWT.apps.weekly.urls', namespace="weekly")),
     path('martor/', include('martor.urls')),
+    # path('sentry-debug/', trigger_error),
+
 ]
 
 # For discord login.
