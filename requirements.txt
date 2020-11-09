@@ -5,6 +5,7 @@ django-crispy-forms
 martor
 pylint
 sentry-sdk
+gunicorn
 
 psycopg2; platform_system == "Windows"
 psycopg2-binary; sys_platform == "linux"

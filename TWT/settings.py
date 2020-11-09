@@ -191,15 +191,17 @@ MARTOR_MARKDOWN_EXTENSIONS = [
     'martor.extensions.mdx_video',  # to parse embed/iframe video
     'martor.extensions.escape_html',  # to handle the XSS vulnerabilities
 ]
-#sentry_sdk.init(
- #   dsn=our_secrets.dsn,
- #   integrations=[DjangoIntegration()],
- #   traces_sample_rate=1.0,
+"""
+sentry_sdk.init(
+    dsn=our_secrets.dsn,
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
 
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
- #   send_default_pii=True
-#)
+     # If you wish to associate users to errors (assuming you are using
+     # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+"""
 # Markdown Extensions Configs
 # MARTOR_MARKDOWN_EXTENSION_CONFIGS = {}
 
