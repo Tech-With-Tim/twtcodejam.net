@@ -24,8 +24,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with pylint with custom pylintrc
+    - name: Checking Syntax errors
       run: |
-        pylint ./TWT/* --rcfile=.pylintrc
-        
-  
+        # check for error
+        pylint ./TWT/ --disable=all --enable=syntax-error
+    - name: Lint with pylint
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        pylint ./TWT/ -f colorized || exit 0
