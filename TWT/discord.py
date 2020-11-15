@@ -85,7 +85,7 @@ class Discord:
     def get_roles(self, guild_id: int = 501090983539245061):
         return self.__request(retry=self.get_roles, url="guilds/{}/roles".format(guild_id))
 
-
+# Role ids for perms in website
 client = Discord(token=TOKEN)
 HELPER_ID: int = 541272748161499147
 MOD_ID: int = 511332506780434438
