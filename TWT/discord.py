@@ -1,5 +1,6 @@
 """
 This file is used to get information from the discord api.
+We are using roles to get the permissions for various users these functions are called in context.py
 """
 from datetime import datetime
 from typing import Callable, List, Optional

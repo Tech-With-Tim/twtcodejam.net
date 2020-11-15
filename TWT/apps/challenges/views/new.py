@@ -1,3 +1,6 @@
+"""
+View to draft a challenge
+"""
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
