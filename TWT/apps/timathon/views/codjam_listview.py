@@ -1,3 +1,7 @@
+"""
+This has not been completed
+This is for past codejams and showing the leaderboard
+"""
 from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse

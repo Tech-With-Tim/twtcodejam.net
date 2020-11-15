@@ -1,3 +1,7 @@
+"""
+This is the custom pages view the admins can create custom pages with a markdown editor
+in the admin page and these appear in the more section in the nav bar
+"""
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View

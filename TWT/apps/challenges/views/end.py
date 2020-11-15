@@ -1,3 +1,6 @@
+"""
+View for ending a code jam
+"""
 from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404

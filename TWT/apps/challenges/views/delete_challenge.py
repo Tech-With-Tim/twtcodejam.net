@@ -1,3 +1,7 @@
+"""
+this is being called by a button that is why we are using a get request
+this is to end a challenge either weekly or monthly from the integer id
+"""
 from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
