@@ -1,4 +1,9 @@
 # Tech-With-Tim-web
+![Python application](https://github.com/Tech-With-Tim/twtcodejam.net/workflows/Python%20application/badge.svg?branch=master)
+![lines](https://img.shields.io/tokei/lines/github/Tech-With-TIm/twtcodejam.net)
+![issues](https://img.shields.io/github/issues/Tech-With-Tim/twtcodejam.net)
+![license](https://img.shields.io/github/license/Tech-With-Tim/twtcodejam.net?color=brightgreen)
+** **
 Repo for the legacy django https://twtcodejam.net website
 
 ## Setup
