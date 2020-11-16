@@ -15,4 +15,4 @@ If you want to report bugs please open an issue with details like:
 * what were you trying to do?
 * which browser you were on?
 
-### [Join our server](discord.gg/twt)
+### [Join our server](https://discord.gg/twt)
