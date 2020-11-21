@@ -10,7 +10,7 @@ assignees: ''
 **Describe Your issue**
 A clear and concise description of what the bug is.
 
-** Steps To Reproduce**
+**Steps To Reproduce**
 Steps to reproduce the bug:
 1. 
 2. 
