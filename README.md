@@ -14,12 +14,8 @@ To see how to setup, please see [setup](SETUP.md).
 
 To see how to contribute to the website, please see [Contributing](CONTRIBUTE.md).
 
-## Reporting Bugs
+### Reporting Bugs
+To report a bug, make a issue with the bug report template
 
-If you want to report bugs, please [open an issue](https://github.com/Tech-With-Tim/twtcodejam.net/issues/new) with details like:
-* screenshots
-* what page you were on?
-* what were you trying to do?
-* which browser you were on?
 
 ### [Join our server](https://discord.gg/twt)
