@@ -9,10 +9,6 @@ To see how to setup please see [setup](SETUP.md)
 To see how to contribute to the website please see [Contributing](CONTRIBUTE.md)
 
 ### Reporting Bugs
-If you want to report bugs please open an issue with details like:
-* screenshots
-* what page you were on?
-* what were you trying to do?
-* which browser you were on?
+To report a bug, make a issue with the bug report template
 
 ### [Join our server](https://discord.gg/twt)
