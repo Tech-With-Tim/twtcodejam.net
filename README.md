@@ -15,7 +15,7 @@ To see how to setup, please see [setup](SETUP.md).
 To see how to contribute to the website, please see [Contributing](CONTRIBUTE.md).
 
 ### Reporting Bugs
-To report a bug, make a issue with the bug report template
+To report a bug, make a issue with the [bug report template](.github/ISSUE_TEMPLATE/bug-report-.md)
 
 
 ### [Join our server](https://discord.gg/twt)
