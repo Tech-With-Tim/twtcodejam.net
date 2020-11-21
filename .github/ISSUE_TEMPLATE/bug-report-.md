@@ -1,6 +1,6 @@
 ---
-name: 'Bug report '
-about: Please fill the following bug report template to help us cater to it better
+name: 'Bug report'
+about: Use this template to report a bug
 title: "[BUG]"
 labels: bug
 assignees: ''
