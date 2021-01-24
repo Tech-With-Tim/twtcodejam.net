@@ -141,7 +141,12 @@ def is_challenge_host(member_id: int) -> bool:
 
 def is_verified(member_id: int) -> bool:
     member = get_member(member_id=member_id)
-    return str(VERIFIED_ID) in member["roles"]
+    try:
+        if member['message'] == "Unknown Member":
+            return False
+    except KeyError:
+        pass
+    return True
 
 
 def is_any(*roles, member_id: int) -> bool:

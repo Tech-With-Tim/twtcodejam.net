@@ -134,3 +134,4 @@ dmypy.json
 
 # hide secrets ofc
 our_secrets.py
+settings.json
