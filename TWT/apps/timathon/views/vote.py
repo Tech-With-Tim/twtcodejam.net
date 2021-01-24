@@ -3,7 +3,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from ..models.team import Team
+from ..models import Team, Submission
 from TWT.context import get_discord_context
 from django import forms
 from TWT.discord import client
@@ -27,13 +27,19 @@ class Vote(View):
         challenge = get_object_or_404(Challenge, ended=False, posted=True, type='MO')#Challenge.objects.get(ended=False, posted=True, type='MO')
         user_teams = Team.objects.filter(challenge=challenge, members=user)
         user_voted_teams = Team.objects.filter(challenge=challenge, voted_by=user)
-
         if len(user_teams) == 0:
             messages.add_message(request,
                                  messages.WARNING,
                                  "You have not participated in the code jam")
             client.send_webhook("Teams", f"<@{discord_user.uid}> tried voting **{team.name}** (ID:{team.ID})",
                                 fields=[{"name": "Error", "value": "They have not particpated in the code jam"}])
+            return redirect('/')
+        if len(Submission.objects.filter(challenge=challenge,team=user_teams[0])) == 0:
+            messages.add_message(request,
+                                 messages.WARNING,
+                                 "You have not Submitted a project in the code jam")
+            client.send_webhook("Teams", f"<@{discord_user.uid}> tried voting **{team.name}** (ID:{team.ID})",
+                                fields=[{"name": "Error", "value": "They have not Submitted a project in the code jam"}])
             return redirect('/')
         if len(user_voted_teams) >= 3:
             messages.add_message(request,
