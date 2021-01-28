@@ -48,7 +48,7 @@
             {#            <h1>vote for the team</h1> IMPLEMENT THIS WITH THE VOTING SYSTEM#}
         {% endif %}
     </div>
-    {% if team.submitted %}
+    {% if team.submitted and user in team.members.all %}
         <div class="container" style="margin-top: 25px">
             <br>
             <h3>Submission:</h3>
