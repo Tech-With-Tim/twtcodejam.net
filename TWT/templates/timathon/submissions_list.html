@@ -16,7 +16,7 @@
                 <h2><b>{{ submission.team.name }}</b></h2><br>
                 <p class="text-white" style="font-size: large;">{{ submission.description }}</p><br>
                 <a class="btn btn-dark git-link" href="{{ submission.github_link }}"
-                   title="{{ submission.github_link }}">GitHub</a><br><br>
+                   title="{{ submission.github_link }}" target="_blank">GitHub</a><br><br>
                 <div class="members-list">
                     {% for team_member in submission.team.discord_members %}
                         <div class="member">
